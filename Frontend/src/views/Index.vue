@@ -7,6 +7,7 @@
     <dashboard-core-view />
 
     <!-- <dashboard-core-settings /> -->
+    <v-snackbar-ex />
   </v-app>
 </template>
 
