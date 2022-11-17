@@ -3,9 +3,9 @@
     <v-app-bar app dark color="blue" flat height="65">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="thidden-sm-and-down font-weight-light">
-                <span>{{$route.name}}</span>
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
+        <span>{{ $route.name }}</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
       <Header />
     </v-app-bar>
 
