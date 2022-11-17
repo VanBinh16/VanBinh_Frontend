@@ -1,5 +1,13 @@
 <template>
+  <v-footer app dark color="blue" flat>
+    <v-card-text class="py-2 white--text text-center">
+      {{ new Date().getFullYear() }} — <strong>Văn Bình 1606</strong>
+    </v-card-text>
+  </v-footer>
+</template>
+<!-- <template>
   <v-footer
+  app
     id="dashboard-core-footer"
   >
     <v-container>
@@ -75,4 +83,4 @@
       font-weight: 500
       text-decoration: none
       text-transform: uppercase
-</style>
+</style> -->
