@@ -49,6 +49,7 @@
             v-if="item.childs"
             v-model="item.expanded"
             :key="item.title"
+            :prepend-icon="item.icon"
             :append-icon="
               item.expanded ? 'mdi-chevron-down' : 'mdi-chevron-down'
             "
@@ -68,6 +69,7 @@
               active-class="border"
             >
               <v-list-item-action v-if="child.icon">
+
                 <v-icon class="white--text pl-3">{{ child.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
@@ -83,7 +85,7 @@
               <v-icon class="white--text">{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="white--text">
+              <v-list-item-title class="demo">
                 {{ item.title }}
               </v-list-item-title>
             </v-list-item-content>
@@ -124,9 +126,10 @@ export default {
 
   data: () => ({
     items: [
+      //teamplate
       {
         icon: "mdi-view-dashboard",
-        title: "Menu",
+        title: "Teamplate",
         expanded: false,
         childs: [
           {
@@ -166,15 +169,16 @@ export default {
           },
         ],
       },
+      //MANAGE
       {
-        icon: "mdi-view-dashboard",
-        title: "Menu",
+        icon: "mdi-application-cog-outline",
+        title: "Quản lý",
         expanded: false,
         childs: [
           {
-            title: "demo",
-            icon: "mdi-bell",
-            to: "/demo",
+            title: "teamplate quản lý",
+            icon: "mdi-book-open-page-variant-outline",
+            to: "/manage/demo",
           },
         ],
       },
@@ -217,5 +221,8 @@ export default {
 <style scoped>
 .border {
   border-left: 4px solid #0ba518;
+}
+.demo {
+  color: red;
 }
 </style>
