@@ -2,8 +2,8 @@
   <v-app>
     <dashboard-core-drawer />
     <!-- <dashboard-core-settings /> -->
-    <v-content class="ma-4">
-      <router-view> </router-view>
+    <v-content>
+      <router-view class="ma-4"> </router-view>
       <v-snackbar-ex />
     </v-content>
     <dashboard-core-footer />
