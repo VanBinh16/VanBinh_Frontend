@@ -1,6 +1,6 @@
 <template>
   <v-footer inset color="blue">
-    <v-card-text class="py-2 white--text text-center">
+    <v-card-text class="py-2 white--text text-center" style = "font-weight: 500;">
       &copy; {{ new Date().getFullYear() }},
       <strong style="color: red">Văn Bình </strong>love older sister
       <v-icon size="20" color="red"> mdi-heart </v-icon>
