@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import demoServices from "@/services/demoConcectApi/demoConcectApi.js";
+import demoServices from "@/services/demo_concect_api/demo_concect_api.js";
 
 import TooltipButton from "@/components/TooltipButton";
 import { pageMixins } from "@/util/PageMixins";
