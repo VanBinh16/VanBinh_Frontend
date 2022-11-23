@@ -69,7 +69,7 @@
               active-class="border"
             >
               <v-list-item-action v-if="child.icon">
-                <v-icon color="slim" class="white--text pl-3">{{
+                <v-icon color="blue" class="pl-3">{{
                   child.icon
                 }}</v-icon>
               </v-list-item-action>
