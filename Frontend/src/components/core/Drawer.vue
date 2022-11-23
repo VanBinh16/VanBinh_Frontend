@@ -170,6 +170,20 @@ export default {
           },
         ],
       },
+      //demo create 23/11/2022
+      {
+        icon: "mdi-application-cog-outline",
+        title: "Demo",
+        expanded: false,
+        childs: [
+          {
+            title: "teamplate demo concect api",
+            icon: "mdi-book-open-page-variant-outline",
+            to: "/demo1",
+          },
+        ],
+      },
+
       //MANAGE
       {
         icon: "mdi-application-cog-outline",

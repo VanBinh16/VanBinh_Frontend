@@ -3,6 +3,13 @@ import Router from "vue-router";
 import Index from "./views/Index";
 
 import Manage_Demo from "@/views/Manage/Demo";
+//Demo
+import Demo_ConcectApi from "@/views/Demo/ConcectApi";
+
+//thu gọn chuỗi kết nối api
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4000/api";
 
 Vue.use(Router);
 
@@ -55,6 +62,13 @@ const routes = [
         name: "Upgrade",
         path: "/upgrade",
         component: () => import("@/views/dashboard/Upgrade"),
+      },
+      //Demo 23/11/2022
+      //concect api
+      {
+        path: "/demo1",
+        name: "Demo Concect Api",
+        component: Demo_ConcectApi,
       },
 
       // MANAGE 17/11/2022
