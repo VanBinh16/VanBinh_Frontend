@@ -2,7 +2,7 @@
   <v-tooltip bottom :color="disabled ? 'error' : 'grey'">
     <template v-slot:activator="{ on }">
       <div v-on="on">
-        <v-btn icon class="mx-0 button-style" @click="$emit('on-click')" :disabled="disabled">
+        <v-btn dark icon class="mx-0 button-style" @click="$emit('on-click')" :disabled="disabled">
           <v-icon :color="iconColor"> {{ icon }} </v-icon>
         </v-btn>
       </div>
