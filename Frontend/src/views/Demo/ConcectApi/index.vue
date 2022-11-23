@@ -4,14 +4,14 @@
         <template #heading>
           <v-row>
             <v-col cols="12" md="4">
-              <h2>demo concect api</h2>
+              <h2>{{$t("demo_concect_api_title")}}</h2>
             </v-col>
             <v-spacer></v-spacer>
             <v-col cols="12" md="4">
               <v-text-field
                 dense
                 outlined
-                label="Nhập thông tin tìm kiếm"
+                :label="$t('input_information_find_title')"
                 append-icon="mdi-magnify"
               />
             </v-col>
@@ -44,7 +44,7 @@
             />
           </v-col>
           <v-btn class="blue mb-4 mx-3">
-            <span class="font-weight-bold"> Tìm </span>
+            <span class="font-weight-bold"> {{$t("button_find_title")}} </span>
           </v-btn>
           <v-checkbox class="mb-4 mx-5" label="Xem tất cả" />
   
@@ -97,7 +97,7 @@
             </template>
   
             <template v-slot:no-data>
-              <div align="left">Không có dữ liệu!!</div>
+              <div align="left">{{$t("no_find_data_title")}}</div>
             </template>
           </v-data-table>
 
@@ -122,10 +122,10 @@
           item: {},
         },
         headers: [
-          { text: "STT", value: "id", width: "90" },
-          { text: "Thao tác", value: "acction", width: "90"},
-          { text: "Tên", value: "name" },
-          { text: "Địa chỉ", value: "address" },
+          { text: this.$t("demo_concect_api_stt"), value: "id", width: "90" },
+          { text: this.$t("demo_concect_api_acction"), value: "acction", width: "90"},
+          { text: this.$t("demo_concect_api_name"), value: "name" },
+          { text: this.$t("demo_concect_api_address"), value: "address" },
         ],
         
       };

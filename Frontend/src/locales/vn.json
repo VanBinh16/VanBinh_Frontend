@@ -9,6 +9,18 @@
     "teamplate": "Teamplate",
     "quan_ly": "Quản lý",
     "upgrade": "upgrade",
-    "chang_string_teamplate_end_no_use": ""
+    "chang_string_teamplate_end_no_use": "",
+
+    "input_information_find_title": "Nhập thông tin tìm kiếm",
+    "button_find_title": "Tìm",
+    "no_find_data_title" : "Không có dữ liệu !!!",
+
+    "demo_concect_api_start_no_use": "",
+    "demo_concect_api_title": "Demo Concect Api",
+    "demo_concect_api_stt": "STT",
+    "demo_concect_api_acction": "Thao tác",
+    "demo_concect_api_name": "Tên",
+    "demo_concect_api_address": "Địa chỉ",
+    "demo_concect_api_end_no_use": ""
 
 }
