@@ -2,10 +2,10 @@
   <v-app>
     <dashboard-core-drawer />
     <!-- <dashboard-core-settings /> -->
-    <v-content>
+    <v-main>
       <router-view class="ma-4"> </router-view>
       <v-snackbar-ex />
-    </v-content>
+    </v-main>
     <dashboard-core-footer />
   </v-app>
 </template>

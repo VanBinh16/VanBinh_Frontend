@@ -17,7 +17,7 @@
       :expand-on-hover="expandOnHover"
       :right="$vuetify.rtl"
       :src="barImage"
-      mobile-break-point="960"
+      mobile-breakpoint="960"
       app
       width="260"
       v-bind="$attrs"
@@ -130,7 +130,7 @@ export default {
       //teamplate
       {
         icon: "mdi-view-dashboard",
-        title: "Teamplate",
+        title: "teamplate",
         expanded: false,
         childs: [
           {
@@ -173,7 +173,7 @@ export default {
       //demo create 23/11/2022
       {
         icon: "mdi-application-cog-outline",
-        title: "Demo",
+        title: "demo",
         expanded: false,
         childs: [
           {
@@ -187,7 +187,7 @@ export default {
       //MANAGE
       {
         icon: "mdi-application-cog-outline",
-        title: "Quản lý",
+        title: "quan_ly",
         expanded: false,
         childs: [
           {
