@@ -14,6 +14,10 @@
     "input_information_find_title": "Nhập thông tin tìm kiếm",
     "button_find_title": "Tìm",
     "no_find_data_title" : "Không có dữ liệu !!!",
+    "items_per_page_text": "Hiện thị",
+    "items-per-page-all-text": "Tất cả",
+    "pagination_pageText": "dòng từ {begin} đến {end} trong tổng số {all}",
+    "paging_from": "Dòng từ",
 
     "demo_concect_api_start_no_use": "",
     "demo_concect_api_title": "Demo Concect Api",
