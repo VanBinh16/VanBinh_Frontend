@@ -54,7 +54,16 @@
       <v-card>
         <v-tooltip bottom>
           <template #activator="{ on }">
-            <v-btn v-on="on" absolute fab top left small color="blue">
+            <v-btn
+              v-on="on"
+              absolute
+              fab
+              top
+              left
+              small
+              color="blue"
+              @click="openInfoDialog('add')"
+            >
               <v-icon> mdi-plus </v-icon>
             </v-btn>
           </template>
@@ -77,6 +86,7 @@
                     icon="mdi-pencil"
                     iconColor="blue"
                     tooltipText="Cập nhật"
+                    @on-click="openInfoDialog('update', item)"
                   />
                 </v-row>
               </td>
@@ -103,19 +113,29 @@
             <div align="left">{{ $t("no_find_data_title") }}</div>
           </template>
         </v-data-table>
+
+        <!-- info dialog -->
+        <info-dialog
+          :show="infoDialog.show"
+          :type="infoDialog.type"
+          :item="infoDialog.item"
+          @close-dialog="infoDialog.show = false"
+        />
       </v-card>
     </base-material-card>
   </v-card>
 </template>
 
 <script>
+import InfoDialog from "./InfoDialog.vue";
+
 import demoServices from "@/services/demo_concect_api/demo_concect_api.js";
 
 import TooltipButton from "@/components/TooltipButton";
 import { pageMixins } from "@/util/PageMixins";
 
 export default {
-  components: { TooltipButton },
+  components: { TooltipButton, InfoDialog },
   mixins: [pageMixins],
   data() {
     return {
@@ -151,6 +171,11 @@ export default {
           stt: idx + 1,
         }));
       }
+    },
+
+    //
+    openInfoDialog: function (type, item = {}) {
+      this.infoDialog = { show: true, type, item };
     },
   },
 };

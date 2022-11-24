@@ -140,19 +140,19 @@ export default {
     };
   },
   mounted: async function () {
-    await this.getDemo();
+    //await this.getDemo();
   },
   methods: {
-    getDemo: async function () {
-      const response = await demoServices.getList();
-      const result = response.data;
-      if (result && !result.error) {
-        this.demos = result.data.map((item, idx) => ({
-          ...item,
-          stt: idx + 1,
-        }));
-      }
-    },
+    // getDemo: async function () {
+    //   const response = await demoServices.getList();
+    //   const result = response.data;
+    //   if (result && !result.error) {
+    //     this.demos = result.data.map((item, idx) => ({
+    //       ...item,
+    //       stt: idx + 1,
+    //     }));
+    //   }
+    // },
     openInfoDialog: function (type, item = {}) {
       this.infoDialog = { show: true, type, item };
     },
