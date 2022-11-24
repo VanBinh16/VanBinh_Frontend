@@ -2,11 +2,14 @@ import Vue from "vue";
 import Router from "vue-router";
 import Index from "./views/Index";
 
+//MANAGE
 import Manage_Demo from "@/views/Manage/Demo";
-//Demo
+import Manage_Branch from "@/views/Manage/Branch";
+
+//DEMO
 import Demo_ConcectApi from "@/views/Demo/ConcectApi";
 
-//thu gọn chuỗi kết nối api
+//THU GON CHUOI KET NOI
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:4000/api";
@@ -18,13 +21,12 @@ const routes = [
     path: "/",
     component: Index,
     children: [
-      // Dashboard
+      // TEAMPLATE
       {
         name: "Dashboard",
         path: "/",
         component: () => import("@/views/dashboard/Dashboard"),
       },
-      // Pages
       {
         name: "User Profile",
         path: "/pages/user",
@@ -45,26 +47,23 @@ const routes = [
         path: "/components/typography",
         component: () => import("@/views/dashboard/component/Typography"),
       },
-      // Tables
       {
         name: "Regular Tables",
         path: "/tables/regular-tables",
         component: () => import("@/views/dashboard/tables/RegularTables"),
       },
-      // Maps
       {
         name: "Google Maps",
         path: "/maps/google-maps",
         component: () => import("@/views/dashboard/maps/GoogleMaps"),
       },
-      // Upgrade
       {
         name: "Upgrade",
         path: "/upgrade",
         component: () => import("@/views/dashboard/Upgrade"),
       },
-      //Demo 23/11/2022
-      //concect api
+
+      //DEMO 23/11/2022
       {
         path: "/demo1",
         name: "Demo Concect Api",
@@ -72,11 +71,15 @@ const routes = [
       },
 
       // MANAGE 17/11/2022
-      // demo
       {
         path: "/manage/demo",
         name: "Manage Demo",
         component: Manage_Demo,
+      },
+      {
+        path: "/manage/branch",
+        name: "Manage Branch",
+        component: Manage_Branch,
       },
     ],
   },

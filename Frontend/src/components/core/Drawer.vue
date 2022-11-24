@@ -127,57 +127,58 @@ export default {
 
   data: () => ({
     items: [
-      //teamplate
+      //TEAMPLATE
       {
         icon: "mdi-view-dashboard",
-        title: "teamplate",
+        title: "menu_template_title",
         expanded: false,
         childs: [
           {
             icon: "mdi-view-dashboard",
-            title: "dashboard",
+            title: "menu_template_dashboard",
             to: "/",
           },
           {
             icon: "mdi-account",
-            title: "user",
+            title: "menu_template_user",
             to: "/pages/user",
           },
           {
-            title: "rtables",
+            title: "menu_template_table",
             icon: "mdi-clipboard-outline",
             to: "/tables/regular-tables",
           },
           {
-            title: "typography",
+            title: "menu_template_typography",
             icon: "mdi-format-font",
             to: "/components/typography",
           },
           {
-            title: "icons",
+            title: "menu_template_icon",
             icon: "mdi-chart-bubble",
             to: "/components/icons",
           },
           {
-            title: "google",
+            title: "menu_template_google",
             icon: "mdi-map-marker",
             to: "/maps/google-maps",
           },
           {
-            title: "notifications",
+            title: "menu_template_notifications",
             icon: "mdi-bell",
             to: "/components/notifications",
           },
         ],
       },
-      //demo create 23/11/2022
+
+      //DEMO  23/11/2022
       {
         icon: "mdi-application-cog-outline",
-        title: "demo",
+        title: "menu_demo_title",
         expanded: false,
         childs: [
           {
-            title: "teamplate demo concect api",
+            title: "menu_demo_create_api_title",
             icon: "mdi-book-open-page-variant-outline",
             to: "/demo1",
           },
@@ -187,13 +188,18 @@ export default {
       //MANAGE
       {
         icon: "mdi-application-cog-outline",
-        title: "quan_ly",
+        title: "menu_manage_title",
         expanded: false,
         childs: [
           {
-            title: "teamplate quản lý",
+            title: "menu_manage_teamplate_demo_title",
             icon: "mdi-book-open-page-variant-outline",
             to: "/manage/demo",
+          },
+          {
+            title: "manu_manage_branch_title",
+            icon: "mdi-home-edit-outline",
+            to: "/manage/branch",
           },
         ],
       },
@@ -225,7 +231,7 @@ export default {
     mapItem(item) {
       return {
         ...item,
-        children: item.children ? item.children.map(this.mapItem) : undefined,
+        childs: item.childs ? item.childs.map(this.mapItem) : undefined,
         title: this.$t(item.title),
       };
     },

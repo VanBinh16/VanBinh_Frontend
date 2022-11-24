@@ -2,12 +2,24 @@
     "van_binh_start": "Văn Bình",
     "trang_vu_end": "Trang Vũ",
 
+    "menu_start_no_use": "",
+    "menu_template_title": "Teamplate",
+    "menu_template_dashboard": "Dashboard",
+    "menu_template_user": "User",
+    "menu_template_table": "Tabble",
+    "menu_template_typography": "Typography",
+    "menu_template_icon": "Icon",
+    "menu_template_google": "Google",
+    "menu_template_notifications": "Notifications",
+    "menu_demo_title": "Demo",
+    "menu_demo_create_api_title": "Kết nối API",
+    "menu_manage_title": "Quản lý",
+    "menu_manage_teamplate_demo_title": "Teamplate demo",
+    "manu_manage_branch_title": "Cửa hàng",
+    "menu_end_no_use": "",
 
     "chang_string_teamplate_strart_no_use": "",
     "avatar": "avart",
-    "demo": "demo",
-    "teamplate": "Teamplate",
-    "quan_ly": "Quản lý",
     "upgrade": "upgrade",
     "chang_string_teamplate_end_no_use": "",
 
@@ -18,6 +30,9 @@
     "items-per-page-all-text": "Tất cả",
     "pagination_pageText": "dòng từ {begin} đến {end} trong tổng số {all}",
     "paging_from": "Dòng từ",
+    "tooltip_button_add_title": "Thêm",
+    "tooltip_button_update_title": "Cập nhật",
+    "acction_title": "Thao tác",
 
     "demo_concect_api_start_no_use": "",
     "demo_concect_api_title": "Demo Concect Api",
@@ -25,6 +40,24 @@
     "demo_concect_api_acction": "Thao tác",
     "demo_concect_api_name": "Tên",
     "demo_concect_api_address": "Địa chỉ",
-    "demo_concect_api_end_no_use": ""
+    "demo_concect_api_end_no_use": "",
+
+
+    "manage_branch_start_no_use": "",
+    "manage_branch_title": "Cửa hàng",
+    "manage_provice_title": "Tỉnh",
+    "manage_branch_stt": "STT",
+    "manage_branch_name": "Cửa hàng",
+    "manage_branch_address": "Địa chỉ",
+    "manage_branch_manager": "Quản lý",
+    "manage_branch_start_date": "Ngày hoạt động",
+    "manage_branch_worker_number": "Thành viên",
+    "manage_branch_notes": "Ghi chú",
+    "manage_branch_end_no_use": "",
+
+
+
+
+    "end_no_use": ""
 
 }
