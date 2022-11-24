@@ -11,7 +11,7 @@
     
   
         <!-- nội dung from -->
-        <v-card-text class="mt-7 pb-0">
+        <v-card-text class="mt-2 pb-0">
           <v-form ref="form">
             <v-row>
               <v-col cols="6" class="mb-0 pb-0">
@@ -136,7 +136,7 @@
           </v-btn>
           <v-btn
             :color="type === 'add' ? 'green' : 'blue'"
-            class="white--text font-weight-bold"
+            class="white--text mr-4 font-weight-bold"
             @click="actionButton"
           >
             {{ text.action }}
