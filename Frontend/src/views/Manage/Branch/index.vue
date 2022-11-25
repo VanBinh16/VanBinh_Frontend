@@ -77,13 +77,16 @@
                 </v-row>
               </td>
               <td>
-                {{ item.company_name }}
+                {{ item.branch_code }}
+              </td>
+              <td>
+                {{ item.branch_name }}
               </td>
               <td>
                 {{ item.manager }}
               </td>
               <td>
-                {{ item.start_date }}
+                {{ dateFormatInput(item.start_date) }}
               </td>
               <td>
                 {{ item.worker_number }}
@@ -130,11 +133,13 @@ import InfoDialog from "./InfoDialog.vue";
 import branchServices from "@/services/branch/branch.js";
 
 import TooltipButton from "@/components/TooltipButton";
+
 import { pageMixins } from "@/util/PageMixins";
+import { dateFormatMixins } from "@/util/DateFormat";
 
 export default {
   components: { TooltipButton, InfoDialog },
-  mixins: [pageMixins],
+  mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
       demos: [],
@@ -148,11 +153,16 @@ export default {
         {
           text: this.$t("acction_title"),
           value: "acction",
-          width: "90",
+          width: "120",
+        },
+        {
+          text: this.$t("manage_branch_code"),
+          value: "branch_code",
+          width: "160",
         },
         {
           text: this.$t("manage_branch_name"),
-          value: "company_name",
+          value: "branch_name",
           width: "220",
         },
         {

@@ -19,7 +19,7 @@
     "menu_end_no_use": "",
 
     "chang_string_teamplate_strart_no_use": "",
-    "avatar": "avart",
+    "avatar": "Văn Bình 1606",
     "upgrade": "upgrade",
     "chang_string_teamplate_end_no_use": "",
 
@@ -33,6 +33,7 @@
     "tooltip_button_add_title": "Thêm",
     "tooltip_button_update_title": "Cập nhật",
     "acction_title": "Thao tác",
+    "rules_empty": "Không được để trống",
 
     "demo_concect_api_start_no_use": "",
     "demo_concect_api_title": "Demo Concect Api",
@@ -47,12 +48,19 @@
     "manage_branch_title": "Cửa hàng",
     "manage_provice_title": "Tỉnh",
     "manage_branch_stt": "STT",
-    "manage_branch_name": "Cửa hàng",
+    "manage_branch_name": "Tên cửa hàng",
+    "manage_branch_code": "Mã cửa hàng",
     "manage_branch_address": "Địa chỉ",
     "manage_branch_manager": "Quản lý",
     "manage_branch_start_date": "Ngày hoạt động",
     "manage_branch_worker_number": "Thành viên",
+    "manage_branch_info_dialog_add_title": "Thêm cửa hàng",
+    "manage_branch_info_dialog_update_title": "Cập nhật thông tin cửa hàng",
     "manage_branch_notes": "Ghi chú",
+    "manage_branch_create_success": "Tạo cửa hàng mới thành công",
+    "manage_branch_create_error_exist": "Cửa hàng đã tồn tại, tạo mới thất bại!!!",
+    "manage_branch_create_error_data": "Dữ liệu truyền xuống không hợp lệ",
+    "manage_branch_eror_connect_network": "Đường truyền không ổn định, vui lòng kiểm tra lại",
     "manage_branch_end_no_use": "",
 
 

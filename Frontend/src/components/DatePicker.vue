@@ -41,21 +41,6 @@
 import { dateFormatMixins } from "../util/DateFormat";
 import moment from "moment";
 
-/**
- * KHAI BÁO SỬ DỤNG
- * <DatePicker/>
- *
- * 2 props phải truyền: label và v-model
- *            - label: Title của date picker đó
- *            - v-model: Là biến giá trị
- *
- * Muốn reload lại component này thì thêm :key="count" sau đó tăng count để reload lại component
- *
- * Nếu date picker này là field bắt buộc điền thì thêm :require="true"
- *
- *
- * ==> <DatePicker label="test" v-model="date" :key="count" :required="true" />
- */
 export default {
   mixins: [dateFormatMixins],
   props: {
