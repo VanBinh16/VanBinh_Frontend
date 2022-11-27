@@ -77,10 +77,10 @@
                 </v-row>
               </td>
               <td>
-                {{ item.branch_code }}
+                {{ item.code }}
               </td>
               <td>
-                {{ item.branch_name }}
+                {{ item.name }}
               </td>
               <td>
                 {{ item.manager }}
@@ -121,6 +121,7 @@
           :type="infoDialog.type"
           :item="infoDialog.item"
           @close-dialog="infoDialog.show = false"
+          @reload-table="getListBranch"
         />
       </v-card>
     </base-material-card>
@@ -157,12 +158,12 @@ export default {
         },
         {
           text: this.$t("manage_branch_code"),
-          value: "branch_code",
+          value: "code",
           width: "160",
         },
         {
           text: this.$t("manage_branch_name"),
-          value: "branch_name",
+          value: "name",
           width: "220",
         },
         {

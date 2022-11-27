@@ -22,7 +22,7 @@
             outlined
             type="text"
             :label="$t('manage_branch_code')"
-            v-model="value.barnch_code"
+            v-model="value.code"
             :rules="[rules.empty]"
           />
 
@@ -31,7 +31,7 @@
             outlined
             type="text"
             :label="$t('manage_branch_name')"
-            v-model="value.branch_name"
+            v-model="value.name"
             :rules="[rules.empty]"
           />
 
@@ -40,7 +40,7 @@
             outlined
             type="text"
             :label="$t('manage_branch_manager')"
-            v-model="value.manage"
+            v-model="value.manager"
             :rules="[rules.empty]"
           />
 
@@ -139,11 +139,11 @@ export default {
     },
     getItem: function () {
       const newItem = {
-        branch_code: this.value.branch_code,
-        branch_name: this.value.branch_name,
+        code: this.value.code,
+        name: this.value.name,
         address: this.value.address,
         manager: this.value.manager,
-        applied_date: this.value.applied_date,
+        start_date: this.value.applied_date,
         worker_number: this.value.worker_number,
         notes: this.value.notes,
       };
@@ -154,7 +154,7 @@ export default {
       try {
         if (!this.$refs.form.validate()) return;
         const body = this.getItem();
-
+        console.warn("data create", body);
         const response = await branchServices.create(body);
         const result = response.data;
         if (result && !result.error) {
