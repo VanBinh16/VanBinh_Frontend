@@ -14,7 +14,8 @@
           <date-picker
             :label="$t('manage_branch_start_date')"
             :required="true"
-            v-model="value.applied_date"
+            v-model="value.start_date"
+            :readonly="type === 'update'"
           />
 
           <v-text-field
@@ -24,6 +25,7 @@
             :label="$t('manage_branch_code')"
             v-model="value.code"
             :rules="[rules.empty]"
+            :readonly="type === 'update'"
           />
 
           <v-text-field
@@ -126,7 +128,13 @@ export default {
         };
 
         this.value = {
-          id: this.item.id,
+          start_date: this.item.start_date,
+          code: this.item.code,
+          name: this.item.name,
+          manager: this.item.manager,
+          worker_number: this.item.worker_number,
+          address: this.item.address,
+          notes: this.item.notes,
         };
       }
     },
@@ -193,19 +201,16 @@ export default {
         const body = this.getItem();
         delete body.branch_code;
         body.id = this.item.id;
-        const response = await branchServices.create(body);
+        const response = await branchServices.update(body);
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");
           this.$SnackBar.show(
             "success",
-            this.$t("manage_branch_create_success")
+            this.$t("manage_branch_update_success")
           );
         } else {
-          this.$SnackBar.show(
-            "error",
-            this.$t("manage_branch_create_error_data")
-          );
+          this.$SnackBar.show("error", this.$t("manage_branch_update_error"));
         }
       } catch (e) {
         this.$SnackBar.show(
