@@ -66,15 +66,22 @@
               <td>
                 {{ item.stt }}
               </td>
-              <td>
-                <v-row justify="center" align="center">
+              <td class="justify-center px-0">
+                <div class="d-flex justify-center">
                   <tooltip-button
                     icon="mdi-pencil"
                     iconColor="blue"
                     :tooltipText="$t('tooltip_button_update_title')"
                     @on-click="openInfoDialog('update', item)"
                   />
-                </v-row>
+                  <tooltip-button
+                    icon="mdi-delete"
+                    iconColor="red"
+                    :tooltipText="$t('tooltip_button_delete_title')"
+                    @on-click="openInfoDialog(item)"
+                  />
+                </div>
+                <v-row justify="center" align="center"> </v-row>
               </td>
               <td>
                 {{ item.code }}
@@ -123,6 +130,14 @@
           @close-dialog="infoDialog.show = false"
           @reload-table="getListBranch"
         />
+
+        <!-- delete dialog -->
+        <delete-dialog
+          :show="deleteDialog.show"
+          :item="deleteDialog.item"
+          @close-dialog="deleteDialog.show = false"
+          @reload-table="getListBranch"
+        />
       </v-card>
     </base-material-card>
   </v-card>
@@ -130,6 +145,7 @@
 
 <script>
 import InfoDialog from "./InfoDialog.vue";
+import DeleteDialog from "./DeleteDialog.vue";
 
 import branchServices from "@/services/branch/branch.js";
 
@@ -139,7 +155,7 @@ import { pageMixins } from "@/util/PageMixins";
 import { dateFormatMixins } from "@/util/DateFormat";
 
 export default {
-  components: { TooltipButton, InfoDialog },
+  components: { TooltipButton, InfoDialog, DeleteDialog },
   mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
@@ -149,12 +165,16 @@ export default {
         type: "",
         item: {},
       },
+      deleteDialog: {
+        show: false,
+        item: {},
+      },
       headers: [
         { text: this.$t("manage_branch_stt"), value: "id", width: "90" },
         {
           text: this.$t("acction_title"),
           value: "acction",
-          width: "120",
+          width: "200",
         },
         {
           text: this.$t("manage_branch_code"),
@@ -210,6 +230,10 @@ export default {
     //
     openInfoDialog: function (type, item = {}) {
       this.infoDialog = { show: true, type, item };
+    },
+    // delete
+    openDeleteDialog: function (item = {}) {
+      this.infoDialog = { show: true, item };
     },
   },
 };

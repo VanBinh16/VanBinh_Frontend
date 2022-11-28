@@ -32,6 +32,7 @@
     "paging_from": "Dòng từ",
     "tooltip_button_add_title": "Thêm",
     "tooltip_button_update_title": "Cập nhật",
+    "tooltip_button_delete_title": "Xoá",
     "acction_title": "Thao tác",
     "rules_empty": "Không được để trống",
 
@@ -60,6 +61,8 @@
     "manage_branch_create_success": "Tạo cửa hàng mới thành công",
     "manage_branch_create_error_exist": "Cửa hàng đã tồn tại, tạo mới thất bại!!!",
     "manage_branch_create_error_data": "Dữ liệu truyền xuống không hợp lệ",
+    "manage_branch_update_success": "Cập nhật cửa hàng thành công",
+    "manage_branch_update_error": "Cập nhật cửa hàng thất bại",
     "manage_branch_eror_connect_network": "Đường truyền không ổn định, vui lòng kiểm tra lại",
     "manage_branch_end_no_use": "",
 

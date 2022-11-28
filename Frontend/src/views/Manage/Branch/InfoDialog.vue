@@ -104,7 +104,7 @@ export default {
   data: function () {
     return {
       value: {
-        applied_date: moment(new Date()).format("YYYY-MM-DD"),
+        start_date: moment(new Date()).format("YYYY-MM-DD"),
       },
       text: {
         title: "",
@@ -151,7 +151,7 @@ export default {
         name: this.value.name,
         address: this.value.address,
         manager: this.value.manager,
-        start_date: this.value.applied_date,
+        start_date: this.value.start_date,
         worker_number: this.value.worker_number,
         notes: this.value.notes,
       };
