@@ -7,6 +7,7 @@
           <span class="font-weight-bold white--text"> {{ text.title }} </span>
         </v-row>
       </v-card-title>
+      <hr />
 
       <!-- nội dung from -->
       <v-card-text class="pt-4">
@@ -72,6 +73,7 @@
         </v-form>
       </v-card-text>
       <!-- footer -->
+      <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
         <v-btn
