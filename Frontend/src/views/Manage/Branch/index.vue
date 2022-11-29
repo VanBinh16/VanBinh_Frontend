@@ -32,7 +32,7 @@
           />
         </v-col>
         <v-btn class="blue mx-4">
-          <span class="font-weight-bold"> {{ $t("button_find_title") }} </span>
+          <span class="white--text font-weight-bold"> {{ $t("button_find_title") }} </span>
         </v-btn>
         <v-spacer />
       </v-row>
@@ -66,8 +66,8 @@
               <td>
                 {{ item.stt }}
               </td>
-              <td class="justify-center px-0">
-                <div class="d-flex justify-center">
+              <td class="justify-center ma-0">
+                <div class="d-flex justify-center" style="margin-top: -20px;">
                   <tooltip-button
                     icon="mdi-pencil"
                     iconColor="blue"
@@ -78,7 +78,7 @@
                     icon="mdi-delete"
                     iconColor="red"
                     :tooltipText="$t('tooltip_button_delete_title')"
-                    @on-click="openInfoDialog(item)"
+                    @on-click="openDeleteDialog(item)"
                   />
                 </div>
                 <v-row justify="center" align="center"> </v-row>
@@ -233,7 +233,7 @@ export default {
     },
     // delete
     openDeleteDialog: function (item = {}) {
-      this.infoDialog = { show: true, item };
+      this.deleteDialog = { show: true, item };
     },
   },
 };

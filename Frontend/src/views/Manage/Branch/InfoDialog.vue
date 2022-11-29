@@ -74,12 +74,17 @@
       <!-- footer -->
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
-        <v-btn text color="blue darken-1" @click="closeInfoDialog">
-          Đóng
+        <v-btn
+          @click="closeInfoDialog"
+          class="mr-4"
+          outlined
+          :color="type === 'add' ? 'green' : 'blue'"
+        >
+          {{ $t("button_close") }}
         </v-btn>
         <v-btn
           :color="type === 'add' ? 'green' : 'blue'"
-          class="white--text mr-4 font-weight-bold"
+          class="white--text font-weight-bold"
           @click="actionButton"
         >
           {{ text.action }}

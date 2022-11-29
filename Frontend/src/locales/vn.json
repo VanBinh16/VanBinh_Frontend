@@ -34,6 +34,7 @@
     "tooltip_button_update_title": "Cập nhật",
     "tooltip_button_delete_title": "Xoá",
     "acction_title": "Thao tác",
+    "button_close": "Đóng",
     "rules_empty": "Không được để trống",
 
     "demo_concect_api_start_no_use": "",
@@ -64,6 +65,9 @@
     "manage_branch_update_success": "Cập nhật cửa hàng thành công",
     "manage_branch_update_error": "Cập nhật cửa hàng thất bại",
     "manage_branch_eror_connect_network": "Đường truyền không ổn định, vui lòng kiểm tra lại",
+    "manage_branch_delete_title": "Xoá cửa hàng",
+    "manage_branch_delete_success": "Xoá cửa hàng thành công",
+    "manage_branch_delete_error": "Xoá cửa hàng thất bại",
     "manage_branch_end_no_use": "",
 
 
