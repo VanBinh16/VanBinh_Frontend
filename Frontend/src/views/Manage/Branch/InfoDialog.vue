@@ -120,6 +120,8 @@ export default {
   watch: {
     show: async function () {
       if (!this.show) return;
+      //reset from không chạy vào rulue
+      this.$refs.form && this.$refs.form.resetValidation();
 
       if (this.type === "add") {
         this.text = {
@@ -146,6 +148,7 @@ export default {
   },
   methods: {
     actionButton: async function () {
+      if (!this.$refs.form.validate()) return;
       this.type === "add"
         ? await this.createBranch()
         : await this.updateBranch();
