@@ -16,6 +16,7 @@
     "menu_manage_title": "Quản lý",
     "menu_manage_teamplate_demo_title": "Teamplate demo",
     "manu_manage_branch_title": "Cửa hàng",
+    "menu_manage_pertment_position_title": "Loại nhân viên",
     "menu_end_no_use": "",
 
     "chang_string_teamplate_strart_no_use": "",
@@ -35,6 +36,8 @@
     "tooltip_button_delete_title": "Xoá",
     "acction_title": "Thao tác",
     "button_close": "Đóng",
+    "column_stt": "STT",
+    "connect_net_work_error": "Có lỗi trong quá trình kết nối, vui lòng kiểm tra lại dây mạng",
     "rules_empty": "Không được để trống",
 
     "demo_concect_api_start_no_use": "",
@@ -70,6 +73,21 @@
     "manage_branch_delete_error": "Xoá cửa hàng thất bại",
     "manage_branch_end_no_use": "",
 
+    "manage_department_position_start_no_use": "",
+    "manage_department_position_title": "Chức vụ nhân viên",
+    "manage_department_position_name": "Tên",
+    "manage_department_position_notes": "Ghi chú",
+    "manage_department_position_add_title": "Thêm chức vụ nhân viên",
+    "manage_department_position_update_title": "Cập nhật chức vụ nhân viên",
+    "manage_department_position_create_success": "Thêm chức vụ mới thành công",
+    "manage_department_position_create_exist": "Chức vụ đã tồn tại, thêm mới thất bại",
+    "manage_department_position_create_error": "Thêm chức vụ mới thất bại",
+    "manage_department_position_update_success": "Cập nhật chức vụ mới thành công",
+    "manage_department_position_update_error": "Cập nhật chức vụ mới thất bại",
+    "manage_department_position_delete_title": "Xoá chức vụ nhân viên",
+    "manage_department_position_delete_success": "Xoá chức vụ thành công",
+    "manage_department_position_delete_error": "Xoá chức vụ thất bại",
+    "manage_department_position_end_no_use": "",
 
 
 

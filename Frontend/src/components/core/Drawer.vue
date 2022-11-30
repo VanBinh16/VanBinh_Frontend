@@ -196,10 +196,17 @@ export default {
             icon: "mdi-book-open-page-variant-outline",
             to: "/manage/demo",
           },
+          //chi nhánh
           {
             title: "manu_manage_branch_title",
             icon: "mdi-home-edit-outline",
             to: "/manage/branch",
+          },
+          //loại nhân viên
+          {
+            title: "menu_manage_pertment_position_title",
+            icon: "mdi-account-cog-outline",
+            to: "/manage/department_position",
           },
         ],
       },
