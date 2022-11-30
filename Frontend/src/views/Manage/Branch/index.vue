@@ -13,6 +13,7 @@
               outlined
               :label="$t('input_information_find_title')"
               append-icon="mdi-magnify"
+              v-model="filter"
             />
           </v-col>
         </v-row>
@@ -60,6 +61,7 @@
           :items="demos"
           :headers="headers"
           :footer-props="footerProps"
+          :search="filter"
         >
           <template #item="{ item, index }">
             <tr :style="index === 0 ? item.style : ''">
@@ -159,6 +161,7 @@ export default {
   mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
+      filter: "",
       demos: [],
       infoDialog: {
         show: false,
