@@ -6,8 +6,10 @@ import Index from "./views/Index";
 import Manage_Demo from "@/views/Manage/Demo";
   //chi nhánh
 import Manage_Branch from "@/views/Manage/Branch";
-  // loại nhân viên
+  // loại nhân viên 30/11/2022
 import Manage_DepartmentPosition from "@/views/Manage/DepartmentPosition";
+  // nhân viên 30/11/2022
+import Manage_Staff from "@/views/Manage/Staff";
 
 //DEMO
 import Demo_ConcectApi from "@/views/Demo/ConcectApi";
@@ -91,6 +93,12 @@ const routes = [
         name: "Mamage Department Position",
         component: Manage_DepartmentPosition,
       },
+        // Nhân viên 30/11/2022
+      {
+        path: "/manage/staff",
+        name: "Manage Staff",
+        component: Manage_Staff,
+      }
     ],
   },
 ];

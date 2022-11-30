@@ -69,9 +69,7 @@
               active-class="border"
             >
               <v-list-item-action v-if="child.icon">
-                <v-icon color="blue" class="pl-3">{{
-                  child.icon
-                }}</v-icon>
+                <v-icon color="blue" class="pl-3">{{ child.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                 <v-list-item-title class="white--text">
@@ -173,7 +171,7 @@ export default {
 
       //DEMO  23/11/2022
       {
-        icon: "mdi-application-cog-outline",
+        icon: "mdi-account-box-multiple-outline",
         title: "menu_demo_title",
         expanded: false,
         childs: [
@@ -202,11 +200,17 @@ export default {
             icon: "mdi-home-edit-outline",
             to: "/manage/branch",
           },
-          //loại nhân viên
+          //loại nhân viên 30/11/2022
           {
             title: "menu_manage_pertment_position_title",
             icon: "mdi-account-cog-outline",
             to: "/manage/department_position",
+          },
+          //nhân viên 30/11/2022
+          {
+            title: "menu_manage_staff_title",
+            icon: "mdi-account-star-outline",
+            to: "/manage/staff",
           },
         ],
       },

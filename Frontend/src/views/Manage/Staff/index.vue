@@ -1,10 +1,10 @@
 <template>
   <v-card id="regular-tables" fluid tag="section">
-    <base-material-card color="blue">
+    <base-material-card color="red">
       <template #heading>
         <v-row>
           <v-col cols="12" md="4">
-            <h2>{{ $t("manage_department_position_title") }}</h2>
+            <h2>{{ $t("manage_staff_title") }}</h2>
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" md="4">
@@ -39,7 +39,7 @@
         </v-tooltip>
 
         <v-data-table
-          :items="demos"
+          :items="staffs"
           :headers="headers"
           :footer-props="footerProps"
           :search="filter"
@@ -103,7 +103,7 @@
 import InfoDialog from "./InfoDialog.vue";
 import DeleteDialog from "./DeleteDialog.vue";
 
-import departmentPositionServices from "@/services/department_position/department_position.js";
+import staffServices from "@/services/staff/staff.js";
 
 import TooltipButton from "@/components/TooltipButton";
 
@@ -116,7 +116,7 @@ export default {
   data() {
     return {
       filter: "",
-      demos: [],
+      staffs: [],
       infoDialog: {
         show: false,
         type: "",
@@ -134,12 +134,57 @@ export default {
           width: "150",
         },
         {
-          text: this.$t("manage_department_position_name"),
+          text: this.$t("manage_staff_code"),
+          value: "code",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_name"),
           value: "name",
-          width: "300",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_birthday"),
+          value: "birthday",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_email"),
+          value: "email",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_phone"),
+          value: "phone",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_gender_name"),
+          value: "gender_name",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_department_position_name"),
+          value: "department_position_name",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_district_name"),
+          value: "district_name",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_province_name"),
+          value: "province_name",
+          width: "200",
+        },
+        {
+          text: this.$t("manage_staff_branch_name"),
+          value: "branch_name",
+          width: "200",
         },
 
-        { text: this.$t("manage_department_position_notes"), value: "notes" },
+        { text: this.$t("manage_staff_notes"), value: "notes" },
       ],
     };
   },
@@ -148,11 +193,11 @@ export default {
   },
   methods: {
     getListBranch: async function () {
-      const response = await departmentPositionServices.getList();
+      const response = await staffServices.getList();
       const result = response.data;
       console.warn("data", result.data);
       if (result && !result.error) {
-        this.demos = result.data.map((item, idx) => ({
+        this.staffs = result.data.map((item, idx) => ({
           ...item,
           stt: idx + 1,
         }));

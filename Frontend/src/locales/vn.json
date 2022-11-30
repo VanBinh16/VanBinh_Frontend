@@ -17,6 +17,7 @@
     "menu_manage_teamplate_demo_title": "Teamplate demo",
     "manu_manage_branch_title": "Cửa hàng",
     "menu_manage_pertment_position_title": "Loại nhân viên",
+    "menu_manage_staff_title": "Nhân viên",
     "menu_end_no_use": "",
 
     "chang_string_teamplate_strart_no_use": "",
@@ -89,6 +90,21 @@
     "manage_department_position_delete_error": "Xoá chức vụ thất bại",
     "manage_department_position_end_no_use": "",
 
+
+    "manage_staff_start_no_use": "",
+    "manage_staff_title": "Nhân viên",
+    "manage_staff_code": "Mã nhân viên",
+    "manage_staff_name": "Tên nhân viên",
+    "manage_staff_birthday": "Ngày sinh",
+    "manage_staff_email": "Email",
+    "manage_staff_phone": "Số điện thoại",
+    "manage_staff_gender": "Giới tính",
+    "manage_staff_department_position_name": "Chức vụ",
+    "manage_staff_province_name": "Tỉnh",
+    "manage_staff_district_name": "Huyện",
+    "manage_staff_branch_name": "Chi nhánh",
+    "manage_staff_notes": "Ghi chú",
+    "manage_staff_end_no_use": "",
 
 
     "end_no_use": ""
