@@ -2,6 +2,6 @@ import axios from "axios";
 
 export default {
   getListGender: function () {
-    return axios.get("/address/list_gender");
+    return axios.get("/more_detail/list_gender");
   },
 };

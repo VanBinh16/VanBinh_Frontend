@@ -133,6 +133,7 @@ export default {
           value: "actions",
           width: "150",
         },
+        
         {
           text: this.$t("manage_staff_code"),
           value: "code",

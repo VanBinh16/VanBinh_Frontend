@@ -56,7 +56,7 @@
             :rules="[rules.empty]"
           />
 
-          <v-textarea
+          <v-text-field
             dense
             outlined
             :label="$t('manage_branch_address')"

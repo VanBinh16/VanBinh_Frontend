@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default {
-  getListProvince: function() {
+  getListProvince: function () {
     return axios.get("/address/list_province");
   },
-  getListDistrict: function (body) {
-    return axios.get("/address/list_district", body);
+  getListDistrict: function (params) {
+    return axios.get("/address/list_district", { params });
   },
 };
