@@ -58,7 +58,7 @@
         </v-tooltip>
 
         <v-data-table
-          :items="demos"
+          :items="branchs"
           :headers="headers"
           :footer-props="footerProps"
           :search="filter"
@@ -162,7 +162,7 @@ export default {
   data() {
     return {
       filter: "",
-      demos: [],
+      branchs: [],
       infoDialog: {
         show: false,
         type: "",
@@ -220,12 +220,11 @@ export default {
     getListBranch: async function () {
       const response = await branchServices.getList();
       const result = response.data;
-      console.warn("data", result.data);
       if (result && !result.error) {
-        this.demos = result.data.map((item, idx) => ({
+        this.branchs = result.data.map((item, idx) => ({
           ...item,
           stt: idx + 1,
-          conmany_code_name: [item.code_company, item.company_name].join(" - "),
+          conmany_code_name: [item.code, item.company].join(" - "),
         }));
       }
     },
