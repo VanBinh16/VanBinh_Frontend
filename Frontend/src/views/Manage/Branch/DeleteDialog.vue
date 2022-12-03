@@ -9,6 +9,7 @@
       <v-card-title class="headline red darken-2 white--text font-weight-bold">
         {{ $t("manage_branch_delete_title") }}
       </v-card-title>
+      <hr>
 
       <div class="pt-3 px-5" style="font-size: 14px">
         <v-row class="ma-0 py-1">
@@ -66,6 +67,7 @@
         </v-row>
       </div>
 
+      <hr>
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
         <v-btn @click="closeDialog" class = "mr-4" outlined  color="red">

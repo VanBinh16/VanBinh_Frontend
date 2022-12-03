@@ -9,7 +9,8 @@
       <v-card-title class="headline red darken-2 white--text font-weight-bold">
         {{ $t("manage_department_position_delete_title") }}
       </v-card-title>
-
+      <hr>
+      
       <div class="pt-3 px-5" style="font-size: 14px">
         <v-row class="ma-0 py-1">
           <v-col class="pa-0" cols="4">
@@ -35,6 +36,7 @@
           </v-col>
         </v-row>
       </div>
+      <hr>
 
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
@@ -58,7 +60,7 @@ import TooltipButton from "@/components/TooltipButton";
 import { pageMixins } from "@/util/PageMixins";
 import { dateFormatMixins } from "@/util/DateFormat";
 
-import branchServices from "@/services/branch/branch.js";
+import departmentPositionServices from "@/services/department_position/department_position.js";
 
 export default {
   components: { TooltipButton },
@@ -75,7 +77,7 @@ export default {
   methods: {
     deleteAction: async function () {
       try {
-        const response = await branchServices.delete({ id: this.item.id });
+        const response = await departmentPositionServices.delete({ id: this.item.id });
         const result = response.data;
         if (result && !result.error) {
           this.$SnackBar.show(

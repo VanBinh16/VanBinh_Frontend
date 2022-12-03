@@ -60,8 +60,8 @@
               />
             </v-row>
           </template>
-          <template #[`item.vn_name`]="{ item }"> {{ item.name }} </template>
-          <template #[`item.notes`]="{ item }"> {{ item.notes }} </template>
+
+          <template #[`item.birthday`]="{ item }"> {{ dateFormatInput(item.birthday) }} </template>
 
           <template v-slot:[`footer.page-text`]="props">
             {{
@@ -185,7 +185,7 @@ export default {
           width: "200",
         },
 
-        { text: this.$t("manage_staff_notes"), value: "notes" },
+        { text: this.$t("manage_staff_notes"), value: "notes", width: "300" },
       ],
     };
   },

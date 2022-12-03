@@ -55,7 +55,7 @@ export default {
       default: false,
     },
     format: {
-      default: "DD/MM/YY",
+      default: "DD/MM/YYYY",
     },
   },
   data() {

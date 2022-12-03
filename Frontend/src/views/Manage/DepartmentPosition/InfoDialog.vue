@@ -170,6 +170,7 @@ export default {
       this.closeInfoDialog();
     },
     closeInfoDialog: function () {
+      this.value = {};
       this.$emit("close-dialog");
     },
   },

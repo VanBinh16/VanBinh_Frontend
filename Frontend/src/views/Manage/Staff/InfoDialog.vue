@@ -333,7 +333,7 @@ export default {
         const body = this.getItem();
         body.id = this.item.id;
 
-        const response = await branchServices.update(body);
+        const response = await staffServices.update(body);
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");
@@ -353,6 +353,7 @@ export default {
       this.closeInfoDialog();
     },
     closeInfoDialog: function () {
+      this.value = {};
       this.$emit("close-dialog");
     },
   },
