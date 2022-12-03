@@ -54,11 +54,9 @@
 </template>
 
 <script>
-import moment from "moment";
-
 import { pageMixins } from "@/util/PageMixins";
 
-import branchServices from "@/services/branch/branch.js";
+import departmentPositionServices from "@/services/department_position/department_position.js";
 
 export default {
   props: ["show", "type", "item"],
@@ -117,7 +115,7 @@ export default {
         if (!this.$refs.form.validate()) return;
         const body = this.getItem();
 
-        const response = await branchServices.create(body);
+        const response = await departmentPositionServices.create(body);
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");
@@ -152,7 +150,7 @@ export default {
         const body = this.getItem();
         body.id = this.item.id;
 
-        const response = await branchServices.update(body);
+        const response = await departmentPositionServices.update(body);
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");

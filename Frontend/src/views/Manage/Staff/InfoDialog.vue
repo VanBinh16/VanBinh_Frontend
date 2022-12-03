@@ -183,6 +183,7 @@ export default {
           start_date: this.item.start_date,
           atm_number: this.item.atm_number,
           notes: this.item.notes,
+          address: this.item.address,
         };
 
         // lấy dữ liệu lên combobox
@@ -204,6 +205,7 @@ export default {
           );
           await this.getListDistrict();
         }
+        console.warn("huyện", this.districts);
         if (this.districts)
           this.value.district = this.districts.find(
             (item) => item.id == this.item.district_id
@@ -285,6 +287,7 @@ export default {
         start_date: this.value.start_date,
         atm_number: this.value.atm_number,
         notes: this.value.notes,
+        address: this.value.address,
       };
       if (this.value.gender) newItem.gender_id = this.value.gender.id;
       if (this.value.department_position)
@@ -301,7 +304,7 @@ export default {
         if (this.value.branch)
           body.code =
             this.value.branch.code +
-            moment(new Date()).format("DDMMyyyyHHmmss");
+            moment(new Date()).format("DDMMYYYYHHmmss");
         console.warn("data", body);
         const response = await staffServices.create(body);
         const result = response.data;

@@ -84,7 +84,7 @@
           :type="infoDialog.type"
           :item="infoDialog.item"
           @close-dialog="infoDialog.show = false"
-          @reload-table="getListBranch"
+          @reload-table="getListStaff"
         />
 
         <!-- delete dialog -->
@@ -92,7 +92,7 @@
           :show="deleteDialog.show"
           :item="deleteDialog.item"
           @close-dialog="deleteDialog.show = false"
-          @reload-table="getListBranch"
+          @reload-table="getListStaff"
         />
       </v-card>
     </base-material-card>
@@ -190,10 +190,10 @@ export default {
     };
   },
   mounted: async function () {
-    await this.getListBranch();
+    await this.getListStaff();
   },
   methods: {
-    getListBranch: async function () {
+    getListStaff: async function () {
       const response = await staffServices.getList();
       const result = response.data;
       console.warn("data", result.data);
