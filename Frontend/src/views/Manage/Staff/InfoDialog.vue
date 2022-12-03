@@ -69,21 +69,19 @@
             </v-col>
             <v-col cols="6" class="mb-0 pb-4">
               <v-autocomplete dense outlined hide-details return-object v-model="value.branch" :items="branchs"
-                item-text="display" item-value="id" :label="$t('manage_staff_branch_name')"
-                :rules="[rules.empty]" />
+                item-text="name" item-value="id" :label="$t('manage_staff_branch_name')" :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6" class="mb-0 pb-4">
               <v-autocomplete dense outlined hide-details v-model="value.province" :items="provinces" return-object
-                @change="getListDistrict()" item-text="name" item-value="id"
-                :label="$t('manage_staff_province_name')" :rules="[rules.empty]" />
+                @change="getListDistrict()" item-text="name" item-value="id" :label="$t('manage_staff_province_name')"
+                :rules="[rules.empty]" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-4">
-              <v-autocomplete dense outlined hide-details v-model="value.district" :items="districts" return-object
-                item-text="name" item-value="id" :label="$t('manage_staff_district_name')"
-                :rules="[rules.empty]" />
+              <v-autocomplete dense outlined hide-details return-object v-model="value.district" :items="districts"
+                item-text="name" item-value="id" :label="$t('manage_staff_district_name')" :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
@@ -160,6 +158,7 @@ export default {
       await this.getListGender();
       await this.getListDepartmentPosition();
       await this.getListProvince();
+
       //reset from không chạy vào rulue
       this.$refs.form && this.$refs.form.resetValidation();
 
@@ -169,6 +168,7 @@ export default {
           action: this.$t("tooltip_button_add_title"),
         };
       } else if (this.type === "update") {
+        await this.getListDistrict();
         this.text = {
           title: this.$t("manage_department_position_update_title"),
           action: this.$t("tooltip_button_update_title"),
@@ -199,19 +199,14 @@ export default {
           this.value.department_position = this.departmentPosition.find(
             (item) => item.id === this.item.department_position_id
           );
-        if (this.provinces) {
+        if (this.provinces)
           this.value.province = this.provinces.find(
             (item) => item.id === this.item.province_id
           );
-          await this.getListDistrict();
-        }
-        console.warn("huyện", this.districts);
         if (this.districts)
           this.value.district = this.districts.find(
-            (item) => item.id == this.item.district_id
+            (item) => item.id === this.item.district_id
           );
-
-        console.warn("this.value", this.value)
       }
     },
   },
@@ -263,7 +258,7 @@ export default {
     },
     // lấy danh sách huyện
     getListDistrict: async function () {
-      if (!this.value.province) return;
+      //if (!this.value.province) return;
       const params = {
         province_id: this.item.province_id
           ? this.item.province_id
