@@ -14,191 +14,89 @@
         <v-form ref="form">
           <v-row v-if="this.type === 'update'">
             <v-col cols="6" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                type="text"
-                :label="$t('manage_staff_code')"
-                v-model="value.code"
-                :rules="[rules.empty]"
-                :readonly="type === 'update'"
-              />
+              <v-text-field dense outlined type="text" :label="$t('manage_staff_code')" v-model="value.code"
+                :rules="[rules.empty]" :readonly="type === 'update'" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                type="text"
-                :label="$t('manage_staff_name')"
-                v-model="value.name"
-                :rules="[rules.empty]"
-              />
+              <v-text-field dense outlined type="text" :label="$t('manage_staff_name')" v-model="value.name"
+                :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row v-if="this.type === 'add'">
             <v-col cols="12" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                type="text"
-                :label="$t('manage_staff_name')"
-                v-model="value.name"
-                :rules="[rules.empty]"
-              />
+              <v-text-field dense outlined type="text" :label="$t('manage_staff_name')" v-model="value.name"
+                :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                type="text"
-                :label="$t('manage_staff_email')"
-                v-model="value.email"
-              />
+              <v-text-field dense outlined type="text" :label="$t('manage_staff_email')" v-model="value.email" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                type="number"
-                :label="$t('manage_staff_phone')"
-                v-model="value.phone"
-                :rules="[rules.empty]"
-              />
+              <v-text-field dense outlined type="number" :label="$t('manage_staff_phone')" v-model="value.phone"
+                :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6" class="mb-0 pb-0">
-              <date-picker
-                v-if="show"
-                :label="$t('manage_staff_start_date')"
-                v-model="value.start_date"
-                :required="true"
-              />
+              <date-picker v-if="show" :label="$t('manage_staff_start_date')" v-model="value.start_date"
+                :required="true" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                type="number"
-                :label="$t('manage_staff_atm_number')"
-                v-model="value.atm_number"
-              />
+              <v-text-field dense outlined type="number" :label="$t('manage_staff_atm_number')"
+                v-model="value.atm_number" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6" class="mb-0 pb-0">
-              <date-picker
-                v-if="show"
-                :label="$t('manage_staff_birthday')"
-                v-model="value.birthday"
-                :required="true"
-              />
+              <date-picker v-if="show" :label="$t('manage_staff_birthday')" v-model="value.birthday" :required="true" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-0">
-              <v-autocomplete
-                dense
-                outlined
-                hide-details
-                return-object
-                v-model="value.gender"
-                :items="genders"
-                item-text="name"
-                item-value="id"
-                :placeholder="$t('manage_staff_gender_name')"
-                :rules="[rules.empty]"
-              />
+              <v-autocomplete dense outlined hide-details return-object v-model="value.gender" :items="genders"
+                item-text="name" item-value="id" :label="$t('manage_staff_gender_name')" :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6" class="mb-0 pb-4">
-              <v-autocomplete
-                dense
-                outlined
-                hide-details
-                return-object
-                v-model="value.department_position"
-                :items="departmentPosition"
-                item-text="name"
-                item-value="id"
-                :placeholder="$t('manage_staff_department_position_name')"
-                :rules="[rules.empty]"
-              />
+              <v-autocomplete dense outlined hide-details return-object v-model="value.department_position"
+                :items="departmentPosition" item-text="name" item-value="id"
+                :label="$t('manage_staff_department_position_name')" :rules="[rules.empty]" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-4">
-              <v-autocomplete
-                dense
-                outlined
-                hide-details
-                return-object
-                v-model="value.branch"
-                :items="branchs"
-                item-text="display"
-                item-value="id"
-                :placeholder="$t('manage_staff_branch_name')"
-                :rules="[rules.empty]"
-              />
+              <v-autocomplete dense outlined hide-details return-object v-model="value.branch" :items="branchs"
+                item-text="display" item-value="id" :label="$t('manage_staff_branch_name')"
+                :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="6" class="mb-0 pb-4">
-              <v-autocomplete
-                dense
-                outlined
-                hide-details
-                v-model="value.province"
-                :items="provinces"
-                return-object
-                @change="getListDistrict()"
-                item-text="name"
-                item-value="id"
-                :placeholder="$t('manage_staff_province_name')"
-                :rules="[rules.empty]"
-              />
+              <v-autocomplete dense outlined hide-details v-model="value.province" :items="provinces" return-object
+                @change="getListDistrict()" item-text="name" item-value="id"
+                :label="$t('manage_staff_province_name')" :rules="[rules.empty]" />
             </v-col>
             <v-col cols="6" class="mb-0 pb-4">
-              <v-autocomplete
-                dense
-                outlined
-                hide-details
-                return-object
-                v-model="value.district"
-                :items="districts"
-                item-text="name"
-                item-value="id"
-                :placeholder="$t('manage_staff_district_name')"
-                :rules="[rules.empty]"
-              />
+              <v-autocomplete dense outlined hide-details v-model="value.district" :items="districts" return-object
+                item-text="name" item-value="id" :label="$t('manage_staff_district_name')"
+                :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="12" class="mb-0 pb-0">
-              <v-text-field
-                dense
-                outlined
-                :label="$t('manage_staff_address')"
-                v-model="value.address"
-                :rules="[rules.empty]"
-              />
+              <v-text-field dense outlined :label="$t('manage_staff_address')" v-model="value.address"
+                :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="12" class="mb-0 pb-0">
-              <v-textarea
-                dense
-                outlined
-                :label="$t('manage_staff_notes')"
-                v-model="value.notes"
-              />
+              <v-textarea dense outlined :label="$t('manage_staff_notes')" v-model="value.notes" />
             </v-col>
           </v-row>
         </v-form>
@@ -207,19 +105,10 @@
       <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
-        <v-btn
-          @click="closeInfoDialog"
-          class="mr-4"
-          outlined
-          :color="type === 'add' ? 'green' : 'blue'"
-        >
+        <v-btn @click="closeInfoDialog" class="mr-4" outlined :color="type === 'add' ? 'green' : 'blue'">
           {{ $t("button_close") }}
         </v-btn>
-        <v-btn
-          :color="type === 'add' ? 'green' : 'blue'"
-          class="white--text font-weight-bold"
-          @click="actionButton"
-        >
+        <v-btn :color="type === 'add' ? 'green' : 'blue'" class="white--text font-weight-bold" @click="actionButton">
           {{ text.action }}
         </v-btn>
       </v-card-actions>
@@ -299,11 +188,19 @@ export default {
         // lấy dữ liệu lên combobox
         if (this.branchs)
           this.value.branch = this.branchs.find(
-            (item) => item.id == this.item.branch_id
+            (item) => item.id === this.item.branch_id
+          );
+        if (this.genders)
+          this.value.gender = this.genders.find(
+            (item) => item.id === this.item.gender_id
+          );
+        if (this.departmentPosition)
+          this.value.department_position = this.departmentPosition.find(
+            (item) => item.id === this.item.department_position_id
           );
         if (this.provinces) {
           this.value.province = this.provinces.find(
-            (item) => item.id == this.item.province_id
+            (item) => item.id === this.item.province_id
           );
           await this.getListDistrict();
         }
@@ -312,16 +209,7 @@ export default {
             (item) => item.id == this.item.district_id
           );
 
-        if (this.genders)
-          this.value.gender = this.genders.find(
-            (item) => item.id == this.item.gender_id
-          );
-        if (this.departmentPosition)
-          this.value.department_position = this.departmentPosition.find(
-            (item) => item.id == this.item.department_position_id
-          );
-
-        console.warn("this.value", this.value);
+        console.warn("this.value", this.value)
       }
     },
   },

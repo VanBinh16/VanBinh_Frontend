@@ -209,7 +209,7 @@ export default {
       try {
         if (!this.$refs.form.validate()) return;
         const body = this.getItem();
-        delete body.branch_code;
+        delete body.code;
         body.id = this.item.id;
         const response = await branchServices.update(body);
         const result = response.data;
