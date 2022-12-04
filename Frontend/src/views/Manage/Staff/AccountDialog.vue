@@ -1,8 +1,8 @@
 <template>
   <v-dialog @keydown.esc="closeDialog" v-model="show" persistent max-width="450px">
     <v-card>
-      <v-card-title class="headline red darken-2 white--text font-weight-bold">
-        {{ $t("manage_staff_delete_title") }}
+      <v-card-title class="headline lime darken-2 white--text font-weight-bold">
+        {{ $t("manage_staff_account_title") }}
       </v-card-title>
       <hr>
 

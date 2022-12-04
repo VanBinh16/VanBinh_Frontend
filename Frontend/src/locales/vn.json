@@ -110,6 +110,11 @@
     "manage_staff_create_success": "Tạo nhân viên mới thành công",
     "manage_staff_create_error_exist": "Vui lòng kiểm tra lại thông tin nhân viên thêm vào",
     "manage_staff_create_error": "Tạo nhân viên mới thất bại",
+    "manage_staff_delete_title": "Xóa nhân viên",
+    "manage_staff_delete_success": "Xóa nhân viên thành công",
+    "manage_staff_delete_error": "Xóa nhân viên thất bại",
+    "manage_staff_tooltip_create_account": "Tạo tài khoản",
+    "manage_staff_account_title": "Tạo tài khoản",
     "manage_staff_end_no_use": "",
 
 

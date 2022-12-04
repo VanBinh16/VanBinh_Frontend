@@ -8,13 +8,8 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" md="4">
-            <v-text-field
-              dense
-              outlined
-              :label="$t('input_information_find_title')"
-              append-icon="mdi-magnify"
-              v-model="filter"
-            />
+            <v-text-field dense outlined :label="$t('input_information_find_title')" append-icon="mdi-magnify"
+              v-model="filter" />
           </v-col>
         </v-row>
       </template>
@@ -22,42 +17,22 @@
       <v-card>
         <v-tooltip bottom>
           <template #activator="{ on }">
-            <v-btn
-              v-on="on"
-              absolute
-              fab
-              top
-              left
-              small
-              color="blue"
-              @click="openInfoDialog('add')"
-            >
+            <v-btn v-on="on" absolute fab top left small color="blue" @click="openInfoDialog('add')">
               <v-icon> mdi-plus </v-icon>
             </v-btn>
           </template>
           <span>{{ $t("tooltip_button_add_title") }}</span>
         </v-tooltip>
 
-        <v-data-table
-          :items="staffs"
-          :headers="headers"
-          :footer-props="footerProps"
-          :search="filter"
-        >
+        <v-data-table :items="staffs" :headers="headers" :footer-props="footerProps" :search="filter">
           <template #[`item.actions`]="{ item }">
             <v-row justify="center" align="center">
-              <tooltip-button
-                icon="mdi-pencil"
-                iconColor="blue"
-                :tooltipText="$t('tooltip_button_update_title')"
-                @on-click="openInfoDialog('update', item)"
-              />
-              <tooltip-button
-                icon="mdi-delete"
-                iconColor="red"
-                :tooltipText="$t('tooltip_button_delete_title')"
-                @on-click="openDeleteDialog(item)"
-              />
+              <tooltip-button icon="mdi-pencil" iconColor="blue" :tooltipText="$t('tooltip_button_update_title')"
+                @on-click="openInfoDialog('update', item)" />
+              <tooltip-button icon="mdi-delete" iconColor="red" :tooltipText="$t('tooltip_button_delete_title')"
+                @on-click="openDeleteDialog(item)" />
+              <tooltip-button icon="mdi-account-lock " iconColor="green"
+                :tooltipText="$t('manage_staff_tooltip_create_account')" @on-click="openAccountDialog(item)" />
             </v-row>
           </template>
 
@@ -65,11 +40,11 @@
 
           <template v-slot:[`footer.page-text`]="props">
             {{
-              $t("pagination_pageText", {
-                begin: props.pageStart,
-                end: props.pageStop,
-                all: props.itemsLength,
-              })
+                $t("pagination_pageText", {
+                  begin: props.pageStart,
+                  end: props.pageStop,
+                  all: props.itemsLength,
+                })
             }}
           </template>
 
@@ -79,21 +54,16 @@
         </v-data-table>
 
         <!-- info dialog -->
-        <info-dialog
-          :show="infoDialog.show"
-          :type="infoDialog.type"
-          :item="infoDialog.item"
-          @close-dialog="infoDialog.show = false"
-          @reload-table="getListStaff"
-        />
+        <info-dialog :show="infoDialog.show" :type="infoDialog.type" :item="infoDialog.item"
+          @close-dialog="infoDialog.show = false" @reload-table="getListStaff" />
 
         <!-- delete dialog -->
-        <delete-dialog
-          :show="deleteDialog.show"
-          :item="deleteDialog.item"
-          @close-dialog="deleteDialog.show = false"
-          @reload-table="getListStaff"
-        />
+        <delete-dialog :show="deleteDialog.show" :item="deleteDialog.item" @close-dialog="deleteDialog.show = false"
+          @reload-table="getListStaff" />
+
+        <!-- account dialog -->
+        <account-dialog :show="accountDialog.show" :item="accountDialog.item" @close-dialog="accountDialog.show = false"
+          @reload-table="getListStaff" />
       </v-card>
     </base-material-card>
   </v-card>
@@ -102,6 +72,7 @@
 <script>
 import InfoDialog from "./InfoDialog.vue";
 import DeleteDialog from "./DeleteDialog.vue";
+import AccountDialog from "./AccountDialog.vue";
 
 import staffServices from "@/services/staff/staff.js";
 
@@ -111,7 +82,7 @@ import { pageMixins } from "@/util/PageMixins";
 import { dateFormatMixins } from "@/util/DateFormat";
 
 export default {
-  components: { TooltipButton, InfoDialog, DeleteDialog },
+  components: { TooltipButton, InfoDialog, DeleteDialog, AccountDialog },
   mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
@@ -126,6 +97,10 @@ export default {
         show: false,
         item: {},
       },
+      accountDialog: {
+        show: false,
+        item: {},
+      },
       headers: [
         { text: this.$t("column_stt"), value: "stt", width: "90" },
         {
@@ -133,7 +108,7 @@ export default {
           value: "actions",
           width: "150",
         },
-        
+
         {
           text: this.$t("manage_staff_code"),
           value: "code",
@@ -196,7 +171,6 @@ export default {
     getListStaff: async function () {
       const response = await staffServices.getList();
       const result = response.data;
-      console.warn("data", result.data);
       if (result && !result.error) {
         this.staffs = result.data.map((item, idx) => ({
           ...item,
@@ -212,6 +186,10 @@ export default {
     // delete
     openDeleteDialog: function (item = {}) {
       this.deleteDialog = { show: true, item };
+    },
+    // account
+    openAccountDialog: function (item = {}) {
+      this.accountDialog = { show: true, item };
     },
   },
 };
