@@ -300,7 +300,6 @@ export default {
           body.code =
             this.value.branch.code +
             moment(new Date()).format("DDMMYYYYHHmmss");
-        console.warn("data", body);
         const response = await staffServices.create(body);
         const result = response.data;
         if (result && !result.error) {
@@ -353,6 +352,11 @@ export default {
       this.closeInfoDialog();
     },
     closeInfoDialog: function () {
+      this.provinces = [];
+      this.districts = [];
+      this.genders = [];
+      this.departmentPosition = [];
+      this.branchs = [];
       this.value = {};
       this.$emit("close-dialog");
     },
