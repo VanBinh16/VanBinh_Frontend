@@ -48,6 +48,7 @@
           <v-list-group
             v-if="item.childs"
             v-model="item.expanded"
+            @click="changeColor(item)"
             :key="item.title"
             :prepend-icon="item.icon"
             :append-icon="
@@ -56,7 +57,10 @@
           >
             <v-list-item slot="activator">
               <v-list-item-content>
-                <v-list-item-title class="white--text">
+                <v-list-item-title v-if ="(item.mau === true)" style = "color: red; font-weight: 600;">
+                  {{ item.title }}
+                </v-list-item-title>
+                <v-list-item-title v-else>
                   {{ item.title }}
                 </v-list-item-title>
               </v-list-item-content>
@@ -66,6 +70,7 @@
               v-for="(child, i) in item.childs"
               :key="i"
               :to="child.to"
+              @click="changeColor(item)"
               active-class="border"
             >
               <v-list-item-action v-if="child.icon">
@@ -130,6 +135,7 @@ export default {
         icon: "mdi-view-dashboard",
         title: "menu_template_title",
         expanded: false,
+        id: 1,
         childs: [
           {
             icon: "mdi-view-dashboard",
@@ -174,6 +180,7 @@ export default {
         icon: "mdi-account-box-multiple-outline",
         title: "menu_demo_title",
         expanded: false,
+        id: 2,
         childs: [
           {
             title: "menu_demo_create_api_title",
@@ -188,6 +195,7 @@ export default {
         icon: "mdi-application-cog-outline",
         title: "menu_manage_title",
         expanded: false,
+        id: 3,
         childs: [
           {
             title: "menu_manage_teamplate_demo_title",
@@ -239,6 +247,15 @@ export default {
   },
 
   methods: {
+    changeColor(item) {
+      for (let i = 0; i < this.computedItems.length; i++) {
+        this.computedItems[i].mau = false;
+        if (item.id === this.computedItems[i].id) {
+          this.computedItems[i].mau = true;
+        }
+      }
+      console.warn("DATA", this.computedItems);
+    },
     mapItem(item) {
       return {
         ...item,
