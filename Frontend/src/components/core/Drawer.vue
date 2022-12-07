@@ -254,7 +254,6 @@ export default {
           this.computedItems[i].mau = true;
         }
       }
-      console.warn("DATA", this.computedItems);
     },
     mapItem(item) {
       return {
