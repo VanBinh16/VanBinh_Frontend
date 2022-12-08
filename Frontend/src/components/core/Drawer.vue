@@ -20,7 +20,7 @@
       mobile-breakpoint="960"
       app
       width="260"
-      v-bind="$attrs"
+      v-bind="$route"
     >
       <template v-slot:img="props">
         <v-img :gradient="`to bottom, ${barColor}`" v-bind="props" />
