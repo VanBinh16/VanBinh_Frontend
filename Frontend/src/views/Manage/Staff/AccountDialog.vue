@@ -1,11 +1,15 @@
 <template>
-  <v-dialog @keydown.esc="closeDialog" v-model="show" persistent max-width="450px">
+  <v-dialog v-model="show" persistent width="60%">
     <v-card>
-      <v-card-title class="headline lime darken-2 white--text font-weight-bold">
-        {{ $t("manage_staff_account_title") }}
+      <!-- header infodialog -->
+      <v-card-title :class="`${type === 'add' ? 'green' : 'blue'} white--text`">
+        <v-row align="center" class="ma-0">
+          <span class="font-weight-bold white--text"> {{ text.title }} </span>
+        </v-row>
       </v-card-title>
-      <hr>
+      <hr />
 
+      <!-- nội dung from -->
       <div class="pt-3 px-5" style="font-size: 14px">
         <v-row class="ma-0 py-1">
           <v-col class="pa-0" cols="4">
@@ -22,15 +26,6 @@
           </v-col>
           <v-col class="pa-0" cols="8">
             <span class="value">{{ item.name }}</span>
-          </v-col>
-        </v-row>
-
-        <v-row class="ma-0 py-1">
-          <v-col class="pa-0" cols="4">
-            <span class="label">{{ $t("manage_staff_birthday") }}:</span>
-          </v-col>
-          <v-col class="pa-0" cols="8">
-            <span class="value">{{ dateFormatInput(item.birthday) }}</span>
           </v-col>
         </v-row>
 
@@ -72,15 +67,6 @@
 
         <v-row class="ma-0 py-1">
           <v-col class="pa-0" cols="4">
-            <span class="label">{{ $t("manage_staff_start_date") }}:</span>
-          </v-col>
-          <v-col class="pa-0" cols="8">
-            <span class="value" style="color: red; font-size: 500">{{ dateFormatInput(item.start_date) }}</span>
-          </v-col>
-        </v-row>
-
-        <v-row class="ma-0 py-1">
-          <v-col class="pa-0" cols="4">
             <span class="label">{{ $t("manage_department_position_notes") }}:</span>
           </v-col>
           <v-col class="pa-0" cols="8">
@@ -90,15 +76,24 @@
           </v-col>
         </v-row>
       </div>
-
-      <hr>
+      <!-- footer -->
+      <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
-        <v-btn @click="closeDialog" class="mr-4" outlined color="red">
+        <v-btn
+          @click="closeInfoDialog"
+          class="mr-4"
+          outlined
+          :color="type === 'add' ? 'green' : 'blue'"
+        >
           {{ $t("button_close") }}
         </v-btn>
-        <v-btn color="red darken-2" class="white--text font-weight-bold" @click="deleteAction">
-          {{ $t("tooltip_button_delete_title") }}
+        <v-btn
+          :color="type === 'add' ? 'green' : 'blue'"
+          class="white--text font-weight-bold"
+          @click="actionButton"
+        >
+          {{ text.action }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -106,26 +101,55 @@
 </template>
 
 <script>
-import TooltipButton from "@/components/TooltipButton";
 import { pageMixins } from "@/util/PageMixins";
-import { dateFormatMixins } from "@/util/DateFormat";
+import DatePicker from "@/components/DatePicker";
 
 import staffServices from "@/services/staff/staff.js";
 
 export default {
-  components: { TooltipButton },
-  mixins: [pageMixins, dateFormatMixins],
-  props: {
-    item: {},
-    show: {
-      type: Boolean,
-      default: false,
-      required: true,
+  props: ["show", "type", "item"],
+  components: { DatePicker },
+  mixins: [pageMixins],
+  data: function () {
+    return {
+      text: {
+        title: "",
+        action: "",
+      },
+    };
+  },
+  watch: {
+    show: async function () {
+      if (!this.show) return;
+
+      if (this.type === "create") {
+        this.text = {
+          title: this.$t("manage_staff_account_title"),
+          action: this.$t("manage_staff_btn_create_account"),
+        };
+      } else if (this.type === "update") {
+        await this.getListDistrict();
+        this.text = {
+          title: this.$t("manage_department_position_update_title"),
+          action: this.$t("tooltip_button_update_title"),
+        };
+      }
     },
   },
-
   methods: {
-    deleteAction: async function () {
+    actionButton: async function () {
+      if (!this.$refs.form.validate()) return;
+      this.type === "add" ? await this.createStaff() : await this.updateStaff();
+    },
+   
+    getItem: function () {
+      const newItem = {
+       
+      };
+    
+      return newItem;
+    },
+    createStaff: async function () {
       try {
         const response = await staffServices.delete({ id: this.item.id });
         const result = response.data;
@@ -145,23 +169,34 @@ export default {
         this.$SnackBar.show("error", this.$t("connect_net_work_error"));
         process.env.VUE_APP_DEBUG === "1" && console.log(e);
       }
-      this.closeDialog();
+      this.closeInfoDialog();
     },
-    closeDialog() {
+
+    updateStaff: async function () {
+      try {
+        const response = await staffServices.delete({ id: this.item.id });
+        const result = response.data;
+        if (result && !result.error) {
+          this.$SnackBar.show(
+            "success",
+            this.$t("manage_staff_delete_success")
+          );
+          this.$emit("reload-table");
+        } else {
+          this.$SnackBar.show(
+            "error",
+            this.$t("manage_staff_delete_error")
+          );
+        }
+      } catch (e) {
+        this.$SnackBar.show("error", this.$t("connect_net_work_error"));
+        process.env.VUE_APP_DEBUG === "1" && console.log(e);
+      }
+      this.closeInfoDialog();
+    },
+    closeInfoDialog: function () {
       this.$emit("close-dialog");
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.label {
-  color: blue;
-  font-weight: 700;
-  //font-weight: 299;
-}
-
-.value {
-  color: black;
-}
-</style>
