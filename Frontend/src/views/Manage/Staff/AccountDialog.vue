@@ -104,7 +104,7 @@
 import { pageMixins } from "@/util/PageMixins";
 import DatePicker from "@/components/DatePicker";
 
-import staffServices from "@/services/staff/staff.js";
+import staffServices from "@/services/staff/account_staff.js";
 
 export default {
   props: ["show", "type", "item"],
@@ -138,8 +138,8 @@ export default {
   },
   methods: {
     actionButton: async function () {
-      if (!this.$refs.form.validate()) return;
-      this.type === "add" ? await this.createStaff() : await this.updateStaff();
+      //if (!this.$refs.form.validate()) return;
+      this.type === "create" ? await this.createStaff() : await this.updateStaff();
     },
    
     getItem: function () {
@@ -151,7 +151,8 @@ export default {
     },
     createStaff: async function () {
       try {
-        const response = await staffServices.delete({ id: this.item.id });
+        console.warn("data", this.item);
+        const response = await staffServices.create({ email: this.item.email });
         const result = response.data;
         if (result && !result.error) {
           this.$SnackBar.show(
@@ -174,7 +175,8 @@ export default {
 
     updateStaff: async function () {
       try {
-        const response = await staffServices.delete({ id: this.item.id });
+        console.warn("data", this.item);
+        const response = await staffServices.create({ email: this.item.email });
         const result = response.data;
         if (result && !result.error) {
           this.$SnackBar.show(
