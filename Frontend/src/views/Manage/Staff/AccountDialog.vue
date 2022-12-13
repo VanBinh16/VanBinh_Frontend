@@ -167,7 +167,7 @@ export default {
     getItem: function () {
       const newItem = {
         email: this.item.email,
-        code: this.item.code,
+        user_code: this.item.code,
       };
 
       return newItem;
