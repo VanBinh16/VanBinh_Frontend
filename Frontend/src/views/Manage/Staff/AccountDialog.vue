@@ -16,7 +16,9 @@
             <span class="label">{{ $t("manage_staff_code") }}:</span>
           </v-col>
           <v-col class="pa-0" cols="8">
-            <span class="value" style="color: red; font-size: 500">{{ item.code }}</span>
+            <span class="value" style="color: red; font-size: 500">{{
+              item.code
+            }}</span>
           </v-col>
         </v-row>
 
@@ -58,20 +60,26 @@
 
         <v-row class="ma-0 py-1">
           <v-col class="pa-0" cols="4">
-            <span class="label">{{ $t("manage_staff_department_position_name") }}:</span>
+            <span class="label"
+              >{{ $t("manage_staff_department_position_name") }}:</span
+            >
           </v-col>
           <v-col class="pa-0" cols="8">
-            <span class="value" style="color: red; font-size: 500">{{ item.department_position_name }}</span>
+            <span class="value" style="color: red; font-size: 500">{{
+              item.department_position_name
+            }}</span>
           </v-col>
         </v-row>
 
         <v-row class="ma-0 py-1">
           <v-col class="pa-0" cols="4">
-            <span class="label">{{ $t("manage_department_position_notes") }}:</span>
+            <span class="label"
+              >{{ $t("manage_department_position_notes") }}:</span
+            >
           </v-col>
           <v-col class="pa-0" cols="8">
             <span class="value" style="color: red; font-size: 500">{{
-                item.notes
+              item.notes
             }}</span>
           </v-col>
         </v-row>
@@ -139,31 +147,34 @@ export default {
   methods: {
     actionButton: async function () {
       //if (!this.$refs.form.validate()) return;
-      this.type === "create" ? await this.createStaff() : await this.updateStaff();
+      this.type === "create"
+        ? await this.sendOtpStaff()
+        : await this.updateStaff();
     },
-   
+
     getItem: function () {
       const newItem = {
-       
+        email: this.item.email,
+        code: this.item.code,
       };
-    
+
       return newItem;
     },
-    createStaff: async function () {
+    sendOtpStaff: async function () {
       try {
-        console.warn("data", this.item);
-        const response = await staffServices.create({ email: this.item.email });
+        const body = this.getItem();
+        const response = await staffServices.create(body);
         const result = response.data;
         if (result && !result.error) {
           this.$SnackBar.show(
             "success",
-            this.$t("manage_staff_delete_success")
+            this.$t("manage_staff_create_otp_code_success")
           );
           this.$emit("reload-table");
         } else {
           this.$SnackBar.show(
             "error",
-            this.$t("manage_staff_delete_error")
+            this.$t("manage_staff_create_otp_code_error")
           );
         }
       } catch (e) {
@@ -185,10 +196,7 @@ export default {
           );
           this.$emit("reload-table");
         } else {
-          this.$SnackBar.show(
-            "error",
-            this.$t("manage_staff_delete_error")
-          );
+          this.$SnackBar.show("error", this.$t("manage_staff_delete_error"));
         }
       } catch (e) {
         this.$SnackBar.show("error", this.$t("connect_net_work_error"));

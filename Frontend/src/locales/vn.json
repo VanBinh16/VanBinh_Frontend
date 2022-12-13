@@ -116,6 +116,8 @@
     "manage_staff_tooltip_create_account": "Tạo tài khoản",
     "manage_staff_account_title": "Tạo tài khoản",
     "manage_staff_btn_create_account": "Tạo",
+    "manage_staff_create_otp_code_success": "Mã OTP đã được gửi tới gmail, vui lòng nhập OTP",
+    "manage_staff_create_otp_code_error": "Gửi mã OTP thất bại, vui lòng kiểm trta lại kết nối",
     "manage_staff_end_no_use": "",
 
 
