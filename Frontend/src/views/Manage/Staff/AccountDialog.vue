@@ -104,6 +104,12 @@
           {{ text.action }}
         </v-btn>
       </v-card-actions>
+
+      <otp-dialog
+        :show="otpDialog.show"
+        :item="otpDialog.item"
+        @close-dialog="otpDialog.show = false"
+      />
     </v-card>
   </v-dialog>
 </template>
@@ -112,17 +118,23 @@
 import { pageMixins } from "@/util/PageMixins";
 import DatePicker from "@/components/DatePicker";
 
+import OtpDialog from "./OtpDialog.vue";
+
 import staffServices from "@/services/staff/account_staff.js";
 
 export default {
   props: ["show", "type", "item"],
-  components: { DatePicker },
+  components: { DatePicker, OtpDialog },
   mixins: [pageMixins],
   data: function () {
     return {
       text: {
         title: "",
         action: "",
+      },
+      otpDialog: {
+        show: false,
+        item: {},
       },
     };
   },
@@ -170,7 +182,9 @@ export default {
             "success",
             this.$t("manage_staff_create_otp_code_success")
           );
-          this.$emit("reload-table");
+          body.name = this.item.name;
+          this.openOtpDialog(body);
+          this.$emit("reload-tabe");
         } else {
           this.$SnackBar.show(
             "error",
@@ -181,7 +195,7 @@ export default {
         this.$SnackBar.show("error", this.$t("connect_net_work_error"));
         process.env.VUE_APP_DEBUG === "1" && console.log(e);
       }
-      this.closeInfoDialog();
+      //this.closeInfoDialog();
     },
 
     updateStaff: async function () {
@@ -206,6 +220,11 @@ export default {
     },
     closeInfoDialog: function () {
       this.$emit("close-dialog");
+    },
+    // otp dialog
+    openOtpDialog: function (item = {}) {
+      console.warn("vao day");
+      this.otpDialog = { show: true, item };
     },
   },
 };
