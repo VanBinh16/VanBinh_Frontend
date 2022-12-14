@@ -35,6 +35,8 @@
     "tooltip_button_add_title": "Thêm",
     "tooltip_button_update_title": "Cập nhật",
     "tooltip_button_delete_title": "Xoá",
+    "button_comfirm": "Xác nhận",
+    "buuton_sent_otp": "Lấy mã OTP",
     "acction_title": "Thao tác",
     "button_close": "Đóng",
     "column_stt": "STT",
@@ -119,6 +121,9 @@
     "manage_staff_create_otp_code_success": "Mã OTP đã được gửi tới gmail, vui lòng nhập OTP",
     "manage_staff_create_otp_code_error": "Gửi mã OTP thất bại, vui lòng kiểm trta lại kết nối",
     "manage_staff_input_otp": "Nhập mã OTP",
+    "manage_staff_create_account_success": "Tạo tài khoản thành công",
+    "manage_staff_create_account_error": "Tạo tài khoản thất bại",
+    "manage_staff_otp_fail": "Sai mã OTP, vui lòng kiểm tra lại",
     "manage_staff_end_no_use": "",
 
 

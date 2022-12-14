@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="show" persistent width="60%">
+  <v-dialog v-model="show" persistent max-width="40%">
     <v-card>
       <!-- header infodialog -->
       <v-card-title :class="`${type === 'add' ? 'green' : 'blue'} white--text`">
@@ -11,7 +11,7 @@
 
       <!-- nội dung from -->
       <div class="pt-3 px-5" style="font-size: 14px">
-        <v-row class="ma-0 py-1">
+        <v-row class="ma-0 py-0">
           <v-col class="pa-0" cols="4">
             <span class="label">{{ $t("manage_staff_code") }}:</span>
           </v-col>
@@ -97,11 +97,11 @@
           {{ $t("button_close") }}
         </v-btn>
         <v-btn
-          :color="type === 'add' ? 'green' : 'blue'"
+          color="blue"
           class="white--text font-weight-bold"
-          @click="actionButton"
+          @click="sendOtpStaff"
         >
-          {{ text.action }}
+          {{ $t("buuton_sent_otp") }}
         </v-btn>
       </v-card-actions>
 
@@ -130,7 +130,6 @@ export default {
     return {
       text: {
         title: "",
-        action: "",
       },
       otpDialog: {
         show: false,
@@ -145,25 +144,16 @@ export default {
       if (this.type === "create") {
         this.text = {
           title: this.$t("manage_staff_account_title"),
-          action: this.$t("manage_staff_btn_create_account"),
         };
       } else if (this.type === "update") {
         await this.getListDistrict();
         this.text = {
           title: this.$t("manage_department_position_update_title"),
-          action: this.$t("tooltip_button_update_title"),
         };
       }
     },
   },
   methods: {
-    actionButton: async function () {
-      //if (!this.$refs.form.validate()) return;
-      this.type === "create"
-        ? await this.sendOtpStaff()
-        : await this.updateStaff();
-    },
-
     getItem: function () {
       const newItem = {
         email: this.item.email,
@@ -175,7 +165,7 @@ export default {
     sendOtpStaff: async function () {
       try {
         const body = this.getItem();
-        const response = await staffServices.create(body);
+        const response = await staffServices.sentOTP(body);
         const result = response.data;
         if (result && !result.error) {
           this.$SnackBar.show(
@@ -184,7 +174,6 @@ export default {
           );
           body.name = this.item.name;
           this.openOtpDialog(body);
-          this.$emit("reload-tabe");
         } else {
           this.$SnackBar.show(
             "error",
@@ -198,32 +187,11 @@ export default {
       //this.closeInfoDialog();
     },
 
-    updateStaff: async function () {
-      try {
-        console.warn("data", this.item);
-        const response = await staffServices.create({ email: this.item.email });
-        const result = response.data;
-        if (result && !result.error) {
-          this.$SnackBar.show(
-            "success",
-            this.$t("manage_staff_delete_success")
-          );
-          this.$emit("reload-table");
-        } else {
-          this.$SnackBar.show("error", this.$t("manage_staff_delete_error"));
-        }
-      } catch (e) {
-        this.$SnackBar.show("error", this.$t("connect_net_work_error"));
-        process.env.VUE_APP_DEBUG === "1" && console.log(e);
-      }
-      this.closeInfoDialog();
-    },
     closeInfoDialog: function () {
       this.$emit("close-dialog");
     },
     // otp dialog
     openOtpDialog: function (item = {}) {
-      console.warn("vao day");
       this.otpDialog = { show: true, item };
     },
   },
