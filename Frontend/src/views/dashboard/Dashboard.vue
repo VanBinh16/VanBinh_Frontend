@@ -234,7 +234,7 @@
             <v-tab-item v-for="n in 3" :key="n">
               <v-card-text>
                 <template v-for="(task, i) in tasks[tabs]">
-                  <v-row :key="i" align="center">
+                  <v-row align="center">
                     <v-col cols="1">
                       <v-list-item-action>
                         <v-checkbox v-model="task.value" color="secondary" />
@@ -259,12 +259,7 @@
     </v-row>
 
     <!-- info dialog -->
-    <info-dialog
-      :show="infoDialog.show"
-      :type="infoDialog.type"
-      :item="infoDialog.item"
-      @close-dialog="infoDialog.show = false"
-    />
+  
   </v-container>
 </template>
 
@@ -279,8 +274,6 @@ export default {
     return {
       infoDialog: {
         show: false,
-        type: "",
-        item: {},
       },
       dailySalesChart: {
         data: {
@@ -498,7 +491,6 @@ export default {
 
     //
     openInfoDialog: function () {
-      console.warn("vao day");
       this.infoDialog = { show: true};
     },
   },

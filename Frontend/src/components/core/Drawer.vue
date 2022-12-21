@@ -57,7 +57,10 @@
           >
             <v-list-item slot="activator">
               <v-list-item-content>
-                <v-list-item-title v-if ="(item.mau === true)" style = "color: red; font-weight: 600;">
+                <v-list-item-title
+                  v-if="item.mau === true"
+                  style="color: red; font-weight: 600"
+                >
                   {{ item.title }}
                 </v-list-item-title>
                 <v-list-item-title v-else>
@@ -107,6 +110,12 @@
         />
       </template>
     </v-navigation-drawer>
+    <!-- info dialog -->
+    <info-dialog
+      :show="infoDialog.show"
+      @close-dialog="infoDialog.show = false"
+      @load-screen="loadScreen"
+    />
   </nav>
 </template>
 
@@ -114,13 +123,14 @@
 // Utilities
 import { mapState } from "vuex";
 import Header from "./AppBar.vue";
+import InfoDialog from "../../views/Login/Login.vue";
 
 export default {
   components: {
     Header,
+    InfoDialog,
   },
   name: "DashboardCoreDrawer",
-
   props: {
     expandOnHover: {
       type: Boolean,
@@ -129,6 +139,9 @@ export default {
   },
 
   data: () => ({
+    infoDialog: {
+      show: false,
+    },
     items: [
       //TEAMPLATE
       {
@@ -246,7 +259,16 @@ export default {
     },
   },
 
+  mounted: async function () {
+    await this.openInfoDialog();
+  },
+
   methods: {
+    //
+    openInfoDialog: function () {
+      this.infoDialog = { show: true };
+    },
+
     changeColor(item) {
       for (let i = 0; i < this.computedItems.length; i++) {
         this.computedItems[i].mau = false;
@@ -254,6 +276,14 @@ export default {
           this.computedItems[i].mau = true;
         }
       }
+    },
+
+    loadScreen() {
+      for (let i = 0; i < this.computedItems.length; i++) {
+        this.computedItems[i].mau = true;
+      }
+      console.warn("data", this.computedItems);
+      this.$emit("close-dialog");
     },
     mapItem(item) {
       return {
