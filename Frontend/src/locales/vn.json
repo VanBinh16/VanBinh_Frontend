@@ -126,6 +126,14 @@
     "manage_staff_otp_fail": "Sai mã OTP, vui lòng kiểm tra lại",
     "manage_staff_end_no_use": "",
 
+    "login_start_no_use": "",
+    "login_title": "Đăng nhập vào hệ thống",
+    "login_email": "email",
+    "login_password": "Mật khẩu",
+    "login_btn_log_in": "Đăng nhập",
+    "login_btn_forget_password": "Quên mật khẩu",
+    "login_end_no_use": "",
+
 
     "end_no_use": ""
 

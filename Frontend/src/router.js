@@ -14,6 +14,9 @@ import Manage_Staff from "@/views/Manage/Staff";
 //DEMO
 import Demo_ConcectApi from "@/views/Demo/ConcectApi";
 
+//LOGIN
+import Login from "@/views/Login/Login"
+
 //THU GON CHUOI KET NOI
 import axios from "axios";
 
@@ -98,7 +101,16 @@ const routes = [
         path: "/manage/staff",
         name: "Manage Staff",
         component: Manage_Staff,
+      },
+
+
+      //login
+      {
+        path: "/login",
+        name: "Login",
+        component: Login,
       }
+
     ],
   },
 ];
