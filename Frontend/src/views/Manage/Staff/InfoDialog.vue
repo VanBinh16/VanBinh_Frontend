@@ -10,7 +10,7 @@
       <hr />
 
       <!-- nội dung from -->
-      <v-card-text class="pt-4">
+      <div class="pt-3 px-5">
         <v-form ref="form">
           <v-row v-if="this.type === 'update'">
             <v-col cols="6" class="mb-0 pb-0">
@@ -98,7 +98,7 @@
             </v-col>
           </v-row>
         </v-form>
-      </v-card-text>
+      </div>
       <!-- footer -->
       <hr />
       <v-card-actions class="" style="background-color: #eeeeee">

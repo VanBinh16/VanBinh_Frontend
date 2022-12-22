@@ -10,7 +10,7 @@
       <hr />
 
       <!-- nội dung from -->
-      <v-card-text class="pt-4">
+      <div class="pt-3 px-5">
         <v-form ref="form">
           <v-text-field
             dense
@@ -28,7 +28,7 @@
             v-model="value.notes"
           />
         </v-form>
-      </v-card-text>
+      </div>
       <!-- footer -->
       <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
