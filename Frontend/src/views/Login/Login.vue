@@ -12,25 +12,26 @@
         {{ $t("login_title") }}
       </v-card-title>
       <hr />
+      <v-form ref="form">
+        <div class="pt-3 px-5" style="font-size: 14px">
+          <v-text-field
+            dense
+            outlined
+            type="text"
+            :label="$t('login_email')"
+            v-model="value.email"
+            :rules="[rules.email]"
+          />
 
-      <div class="pt-3 px-5" style="font-size: 14px">
-        <v-text-field
-          dense
-          outlined
-          type="text"
-          :label="$t('login_email')"
-          v-model="value"
-        />
-
-        <v-text-field
-          dense
-          outlined
-          type="text"
-          :label="$t('login_password')"
-          v-model="value"
-        />
-      </div>
-
+          <v-text-field
+            dense
+            outlined
+            type="text"
+            :label="$t('login_password')"
+            v-model="value.matkhau"
+          />
+        </div>
+      </v-form>
       <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
@@ -45,9 +46,6 @@
           {{ $t("login_btn_log_in") }}
         </v-btn>
       </v-card-actions>
-
-      <!-- drwaer - dialog -->
-      <!-- <drawer-dialog :status12="drawerDialog.status12" /> -->
     </v-card>
   </v-dialog>
 </template>
@@ -63,13 +61,10 @@ export default {
   mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
-      // drawerDialog: {
-      //   status12: {},
-      // },
+      value: {},
     };
   },
   props: {
-    value: {},
     show: {
       type: Boolean,
       default: false,
@@ -78,7 +73,19 @@ export default {
   },
 
   methods: {
+    getItem: function () {
+      const newItem = {
+        email: this.value.email,
+        matkhau: this.value.matkhau,
+      };
+      return newItem;
+    },
+
     loginAction: async function () {
+      if (!this.$refs.form.validate()) return;
+      const body = this.getItem();
+
+      console.warn("data đăng nhập", body);
 
       localStorage.setItem("id", 1606);
       this.closeDialog();
