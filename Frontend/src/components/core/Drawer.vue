@@ -44,7 +44,7 @@
 
       <v-divider class="mb-2" />
       <v-list dense>
-        <template v-for="(item, idx) in computedItems">
+        <template v-for="(item, idx) in this.computedItems">
           <v-list-group
             v-if="item.childs"
             v-model="item.expanded"
@@ -139,6 +139,7 @@ export default {
   },
 
   data: () => ({
+    computedItems: [],
     infoDialog: {
       show: false,
     },
@@ -248,9 +249,6 @@ export default {
         this.$store.commit("SET_DRAWER", val);
       },
     },
-    computedItems() {
-      return this.items.map(this.mapItem);
-    },
     profile() {
       return {
         avatar: true,
@@ -279,11 +277,7 @@ export default {
     },
 
     loadScreen() {
-      for (let i = 0; i < this.computedItems.length; i++) {
-        this.computedItems[i].mau = true;
-      }
-      console.warn("data", this.computedItems);
-      this.$emit("close-dialog");
+      this.computedItems = this.items.map(this.mapItem);
     },
     mapItem(item) {
       return {
