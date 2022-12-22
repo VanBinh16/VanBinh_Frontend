@@ -44,7 +44,7 @@
 
       <v-divider class="mb-2" />
       <v-list dense>
-        <template v-for="(item, idx) in this.computedItems">
+        <template v-for="(item, idx) in computedItems">
           <v-list-group
             v-if="item.childs"
             v-model="item.expanded"
