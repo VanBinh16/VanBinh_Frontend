@@ -61,7 +61,9 @@ export default {
   mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
-      value: {},
+      value: {
+        email: "vuthitrangvb1407@gmail.com",
+      },
     };
   },
   props: {
@@ -87,7 +89,7 @@ export default {
       localStorage.setItem("id", 1606);
       localStorage.setItem("status_login_id", 600);
       localStorage.setItem("status_login_name", "Đăng nhập thành công");
-      
+
       if (!this.$refs.form.validate()) return;
       const body = this.getItem();
 

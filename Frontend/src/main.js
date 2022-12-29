@@ -57,12 +57,8 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    console.warn("vao đây", error);
-    pushToLogin();
-    return Promise.reject(error);
+    // kết nối API lỗi
+    //localStorage.clear();
+    //location.reload();
   }
 );
-
-const pushToLogin = () => {
-  //router.push({ path: "/login", query: { error: 1 } });
-};

@@ -181,6 +181,9 @@ export default {
       localStorage.setItem("id", "");
       localStorage.setItem("status_login_id", "");
       localStorage.setItem("status_login_name", "");
+
+      // clear tất cả
+      //localStorage.clear();
     },
   },
 };
