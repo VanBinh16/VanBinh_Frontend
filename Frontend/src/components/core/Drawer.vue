@@ -261,6 +261,9 @@ export default {
 
   mounted: async function () {
     await this.openInfoDialog();
+    if(localStorage.status_login_id == 600){
+      this.loadScreen()
+    }
   },
 
   methods: {
@@ -282,7 +285,6 @@ export default {
 
     loadScreen() {
       this.computedItems = this.items.map(this.mapItem);
-      router.push("/trangchu");
     },
     mapItem(item) {
       return {

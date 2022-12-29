@@ -55,6 +55,7 @@ import TooltipButton from "@/components/TooltipButton";
 import { pageMixins } from "@/util/PageMixins";
 import { dateFormatMixins } from "@/util/DateFormat";
 import DrawerDialog from "@/components/core/Drawer.vue";
+import router from "../../router";
 
 export default {
   components: { TooltipButton, DrawerDialog },
@@ -90,6 +91,7 @@ export default {
       localStorage.setItem("status_login_id", 600);
       localStorage.setItem("status_login_name", "Đăng nhập thành công");
 
+      router.push("/trangchu");
       if (!this.$refs.form.validate()) return;
       const body = this.getItem();
 

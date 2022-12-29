@@ -34,10 +34,10 @@ new Vue({
   render: (h) => h(App),
 }).$mount("#app");
 
-if (localStorage.status_login_id != 600) {
-  router.push("/login");
-} else if (localStorage.status_login_id == 600) {
-  router.push("/trangchu");
+if (router.history.current.path != "/login") {
+  if (localStorage.status_login_id != 600) {
+    router.push("/login");
+  }
 }
 
 axios.interceptors.request.use(
