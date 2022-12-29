@@ -264,10 +264,10 @@
 </template>
 
 <script>
-import InfoDialog from "../Login/Login.vue";
+//import InfoDialog from "../Login/Login.vue";
 
 export default {
-  components: { InfoDialog },
+  //components: { InfoDialog },
   name: "DashboardDashboard",
 
   data() {

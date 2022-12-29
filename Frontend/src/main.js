@@ -11,24 +11,58 @@
 //
 // * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import './plugins/base'
-import './plugins/chartist'
-import './plugins/vee-validate'
-import vuetify from './plugins/vuetify'
-import i18n from './i18n'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+import "./plugins/base";
+import "./plugins/chartist";
+import "./plugins/vee-validate";
+import vuetify from "./plugins/vuetify";
+import i18n from "./i18n";
 import SnackBar from "./plugins/SnackBar";
 
-Vue.config.productionTip = false
+import axios from "axios";
+Vue.config.productionTip = false;
 
-Vue.use(SnackBar);
+const vm = Vue.use(SnackBar);
 new Vue({
   router,
   store,
   vuetify,
   i18n,
-  render: h => h(App),
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
+
+if (localStorage.status_login_id != 600) {
+  router.push("/login");
+} else if (localStorage.status_login_id == 600) {
+  router.push("/trangchu");
+}
+
+axios.interceptors.request.use(
+  function (config) {
+    console.warn("vao đây");
+    return config;
+  },
+  function (error) {
+    console.warn("vao đây");
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  function (response) {
+    console.warn("data vào đây");
+    return response;
+  },
+  function (error) {
+    console.warn("vao đây", error);
+    pushToLogin();
+    return Promise.reject(error);
+  }
+);
+
+const pushToLogin = () => {
+  //router.push({ path: "/login", query: { error: 1 } });
+};

@@ -70,13 +70,48 @@
       </v-list>
     </v-menu>
 
-    <v-btn class="ml-2" min-width="0" text to="/pages/user">
+    <v-menu
+      bottom
+      left
+      offset-y
+      origin="top right"
+      transition="scale-transition"
+    >
+      <template v-slot:activator="{ attrs, on }">
+        <v-btn class="ml-2" min-width="0" text v-bind="attrs" v-on="on">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list dense :tile="false" nav width="250">
+        <v-list-item to="/pages/user" style="color: brown">
+          <v-btn class="mx-2" fab dark color="primary">
+            <v-icon dark> mdi-android </v-icon>
+          </v-btn>
+          <h2>Huỳnh Văn Bình</h2>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item @click="logout()">
+          <v-list-item-icon>
+            <v-icon>mdi-login-variant</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title
+              v-text="$t('login_out_account')"
+            ></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+
+    <!-- <v-btn class="ml-2" min-width="0" text to="/pages/user">
       <v-icon>mdi-account</v-icon>
-    </v-btn>
+    </v-btn> -->
   </v-row>
 </template>
 
 <script>
+//import router from "@/router";
 // Components
 import { VHover, VListItem } from "vuetify/lib";
 
@@ -137,10 +172,16 @@ export default {
     ...mapState(["drawer"]),
   },
 
-  // methods: {
-  //   ...mapMutations({
-  //     setDrawer: 'SET_DRAWER',
-  //   }),
-  // },
+  methods: {
+    async logout() {
+      this.clearLocalStorage();
+      location.reload();
+    },
+    clearLocalStorage() {
+      localStorage.setItem("id", "");
+      localStorage.setItem("status_login_id", "");
+      localStorage.setItem("status_login_name", "");
+    },
+  },
 };
 </script>

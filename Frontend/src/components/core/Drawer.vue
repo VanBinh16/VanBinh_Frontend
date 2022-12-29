@@ -121,6 +121,8 @@
 
 <script>
 // Utilities
+import router from "@/router";
+
 import { mapState } from "vuex";
 import Header from "./AppBar.vue";
 import InfoDialog from "../../views/Login/Login.vue";
@@ -154,7 +156,7 @@ export default {
           {
             icon: "mdi-view-dashboard",
             title: "menu_template_dashboard",
-            to: "/",
+            to: "/trangchu",
           },
           {
             icon: "mdi-account",
@@ -264,7 +266,9 @@ export default {
   methods: {
     //
     openInfoDialog: function () {
-      this.infoDialog = { show: true };
+      if (localStorage.status_login_id != 600) {
+        this.infoDialog = { show: true };
+      }
     },
 
     changeColor(item) {
@@ -278,6 +282,7 @@ export default {
 
     loadScreen() {
       this.computedItems = this.items.map(this.mapItem);
+      router.push("/trangchu");
     },
     mapItem(item) {
       return {

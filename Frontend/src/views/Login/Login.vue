@@ -82,12 +82,17 @@ export default {
     },
 
     loginAction: async function () {
+      localStorage.clear();
+
+      localStorage.setItem("id", 1606);
+      localStorage.setItem("status_login_id", 600);
+      localStorage.setItem("status_login_name", "Đăng nhập thành công");
+      
       if (!this.$refs.form.validate()) return;
       const body = this.getItem();
 
       console.warn("data đăng nhập", body);
 
-      localStorage.setItem("id", 1606);
       this.closeDialog();
       this.$emit("load-screen");
     },
