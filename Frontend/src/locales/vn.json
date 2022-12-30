@@ -133,6 +133,9 @@
     "login_btn_log_in": "Đăng nhập",
     "login_btn_forget_password": "Quên mật khẩu",
     "login_out_account": "Đăng xuất",
+    "login_error_email_or_password": "Sai thông tin đăng nhập, vui lòng thử lại!!!",
+    "login_success": "Đăng nhập thành công",
+    "login_error": "Có lỗi trong quá trình lấy dữ liệu, vui lòng thử lại",
     "login_end_no_use": "",
 
 

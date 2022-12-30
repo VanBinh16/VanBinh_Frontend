@@ -26,9 +26,12 @@
           <v-text-field
             dense
             outlined
-            type="text"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showPassword ? 'text' : 'password'"
             :label="$t('login_password')"
-            v-model="value.matkhau"
+            v-model="value.password"
+            @click:append="showPassword = !showPassword"
+            :rules="[rules.empty]"
           />
         </div>
       </v-form>
@@ -57,11 +60,14 @@ import { dateFormatMixins } from "@/util/DateFormat";
 import DrawerDialog from "@/components/core/Drawer.vue";
 import router from "../../router";
 
+import staffServices from "@/services/staff/account_staff.js";
+
 export default {
   components: { TooltipButton, DrawerDialog },
   mixins: [pageMixins, dateFormatMixins],
   data() {
     return {
+      showPassword: false,
       value: {
         email: "vuthitrangvb1407@gmail.com",
       },
@@ -79,27 +85,46 @@ export default {
     getItem: function () {
       const newItem = {
         email: this.value.email,
-        matkhau: this.value.matkhau,
+        password: this.value.password,
       };
       return newItem;
     },
 
     loginAction: async function () {
-      localStorage.clear();
-
-      localStorage.setItem("id", 1606);
-      localStorage.setItem("status_login_id", 600);
-      localStorage.setItem("status_login_name", "Đăng nhập thành công");
-
-      router.push("/trangchu");
       if (!this.$refs.form.validate()) return;
-      const body = this.getItem();
+      localStorage.clear();
+      try {
+        const body = this.getItem();
+        const response = await staffServices.login(body);
+        const result = response.data;
+        if (result && !result.error) {
+          localStorage.setItem("id", 1606);
+          localStorage.setItem("status_login_id", 600);
+          localStorage.setItem("status_login_name", "Đăng nhập thành công");
 
-      console.warn("data đăng nhập", body);
+          router.push("/trangchu");
 
-      this.closeDialog();
-      this.$emit("load-screen");
+          this.closeDialog();
+          this.$emit("load-screen");
+          this.$SnackBar.show("success", this.$t("login_success"));
+        } else {
+          if (result.code === 201) {
+            this.$SnackBar.show(
+              "error",
+              this.$t("login_error_email_or_password")
+            );
+            return;
+          } else {
+            this.$SnackBar.show("error", this.$t("login_error"));
+            return;
+          }
+        }
+      } catch (e) {
+        this.$SnackBar.show("error", this.$t("connect_net_work_error"));
+        process.env.VUE_APP_DEBUG === "1" && console.log(e);
+      }
     },
+
     closeDialog() {
       this.$emit("close-dialog");
     },

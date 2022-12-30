@@ -8,4 +8,8 @@ export default {
   createAccountStaff: function (body) {
     return axios.post("/staff/create_account_staff", body);
   },
+
+  login: function (body) {
+    return axios.post("/staff/login", body);
+  },
 };
