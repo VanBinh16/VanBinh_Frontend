@@ -85,11 +85,17 @@
 
       <v-list dense :tile="false" nav width="250">
         <v-list-item to="/pages/user" style="color: brown">
-          <v-btn class="mx-2" fab dark color="primary">
-            <v-icon dark> mdi-android </v-icon>
-          </v-btn>
-          <h2>Huỳnh Văn Bình</h2>
+          <v-list-item-avatar>
+            <v-img :src="require('../../image/trangvu.jpg')"></v-img>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <h2 style="color: brown; font-weight: 400; font-size: 22px">
+              Trang Vũ
+            </h2>
+          </v-list-item-content>
         </v-list-item>
+
         <v-divider></v-divider>
         <v-list-item @click="logout()">
           <v-list-item-icon>
