@@ -138,6 +138,23 @@
     "login_error": "Có lỗi trong quá trình lấy dữ liệu, vui lòng thử lại",
     "login_end_no_use": "",
 
+    "manage_type_service_no_use": "",
+    "manage_type_service_title": "Loại dịch vụ",
+    "manage_type_service_code": "Mã dịch vụ",
+    "manage_type_service_name": "Tên dịch vụ",
+    "manage_type_service_notes": "Ghi chú",
+    "manage_type_service_delete_title": "Xoá loại dịch vụ",
+    "manage_type_service_delete_success": "Xoá loại dịch vụ thành công",
+    "manage_type_service_delete_error": "Xoá loại dịch vụ thất bại",
+    "manage_type_service_connect_error": "Lỗi kết nối, vui lòng thử lại sau",
+    "manage_type_service_add_title": "Thêm loại dịch vụ",
+    "manage_type_service_update_title": "Cập nhật loại dịch vụ",
+    "manage_type_service_add_success": "Thêm loại dịch vụ thành công",
+    "manage_type_service_add_error_exist": "Loại dịch vụ đã tồn tại, thêm thất bại",
+    "manage_type_service_data_error": "Có lỗi trong quá trình lấy dữ liệu, vui lòng thử lại sau",
+    "manage_type_service_update_success": "Cập nhật loại dịch vụ thành công",
+    "manage_type_service_end_use": "",
+
 
     "end_no_use": ""
 
