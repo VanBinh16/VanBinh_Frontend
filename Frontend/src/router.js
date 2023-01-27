@@ -19,6 +19,9 @@ import Demo_ConcectApi from "@/views/Demo/ConcectApi";
 //LOGIN
 import Index_Login from "@/views/Login/index";
 
+//register
+import Register from "@/views/Register/Register.vue";
+
 //THU GON CHUOI KET NOI
 import axios from "axios";
 
@@ -44,6 +47,11 @@ let router = new Router({
           component: Index_Login,
         },
       ],
+    },
+
+    {
+      path: "/register",
+      component: Register,
     },
 
     {
