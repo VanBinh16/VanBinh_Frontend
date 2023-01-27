@@ -10,6 +10,8 @@ import Manage_Branch from "@/views/Manage/Branch";
 import Manage_DepartmentPosition from "@/views/Manage/DepartmentPosition";
 // nhân viên 30/11/2022
 import Manage_Staff from "@/views/Manage/Staff";
+//loại dịcn vụ
+import Manage_Type_Service from "@/views/Manage/TypeService";
 
 //DEMO
 import Demo_ConcectApi from "@/views/Demo/ConcectApi";
@@ -124,6 +126,12 @@ let router = new Router({
           path: "/manage/staff",
           name: "Manage Staff",
           component: Manage_Staff,
+        },
+        // Loại dịch vụ
+        {
+          path: "/manage/type_service",
+          name: "Manage  Type Service",
+          component: Manage_Type_Service,
         },
       ],
     },

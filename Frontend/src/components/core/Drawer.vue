@@ -236,6 +236,12 @@ export default {
             icon: "mdi-account-star-outline",
             to: "/manage/staff",
           },
+          //loại dịch vụ
+          {
+            title: "menu_manage_service_title",
+            icon: "mdi-account-wrench",
+            to: "/manage/type_service",
+          },
         ],
       },
     ],
@@ -261,8 +267,8 @@ export default {
 
   mounted: async function () {
     await this.openInfoDialog();
-    if(localStorage.status_login_id == 600){
-      this.loadScreen()
+    if (localStorage.status_login_id == 600) {
+      this.loadScreen();
     }
   },
 
