@@ -35,7 +35,7 @@
             <v-text-field
               dense
               outlined
-              v-model="value.email"
+              v-model="value.phone"
               type="number"
               :label="$t('register_phone')"
               :rules="[rules.empty]"
@@ -78,10 +78,9 @@
               outlined
               :label="$t('register_address')"
               v-model="value.address"
-              :rules="[rules.empty]"
             />
           </v-col>
-          <v-row style="margin-left: 2px; margin-right: 2px;">
+          <v-row style="margin-left: 2px; margin-right: 2px">
             <v-col cols="6" class="mb-0 pb-0">
               <v-btn
                 large
@@ -110,6 +109,12 @@
         </v-form>
       </div>
     </div>
+
+    <otp-dialog
+      :show="otpDialog.show"
+      :item="otpDialog.item"
+      @close-dialog="otpDialog.show = false"
+    />
   </v-app>
 </template>
 
@@ -117,12 +122,21 @@
 import router from "@/router";
 import { pageMixins } from "@/util/PageMixins";
 import addressServices from "@/services/address/address.js";
+import registerServices from "@/services/register/register.js";
+import OtpDialog from "./OtpDialog.vue";
 
 export default {
+  components: { OtpDialog },
   mixins: [pageMixins],
   data() {
     return {
-      value: {},
+      value: {
+        email: "huynhvanbinh1606@gmail.com",
+      },
+      otpDialog: {
+        show: false,
+        item: {},
+      },
       province: {},
       provinces: [],
       district: {},
@@ -141,8 +155,38 @@ export default {
       router.push("/login");
     },
 
+    getItem: function () {
+      const newItem = {
+        user_name: this.value.user_name,
+        email: this.value.email,
+        phone: this.value.phone,
+        province_id: this.value.province.id,
+        district_id: this.district.id,
+        address: this.value.address,
+      };
+      return newItem;
+    },
+
     register: async function () {
-      console.warn("đăng ký");
+      if (!this.$refs.form.validate()) return;
+      try {
+        const body = this.getItem();
+        this.openOtpDialog(body);
+        const response = await registerServices.sentOTP({
+          email: this.value.email,
+        });
+        const result = response.data;
+
+        if (result && !result.error) {
+          this.openOtpDialog(body);
+        } else {
+          this.$SnackBar.show("error", this.$t("register_data_fail"));
+          return;
+        }
+      } catch (e) {
+        this.$SnackBar.show("error", this.$t("connect_net_work_error"));
+        process.env.VUE_APP_DEBUG === "1" && console.log(e);
+      }
     },
 
     //lấy danh sách tỉnh
@@ -170,6 +214,11 @@ export default {
           ...item,
         }));
       }
+    },
+
+    // otp dialog
+    openOtpDialog: function (item = {}) {
+      this.otpDialog = { show: true, item };
     },
   },
 };

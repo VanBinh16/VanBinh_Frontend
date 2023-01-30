@@ -40,7 +40,7 @@
               style="cursor: pointer"
               @click="register()"
             >
-              {{ $t("regíter_no_account") }}
+              {{ $t("register_no_account") }}
             </h3>
           </v-row>
         </div>

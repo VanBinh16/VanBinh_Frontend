@@ -166,7 +166,14 @@
     "register_address": "Địa chỉ",
     "register_login_in": "Đăng nhập",
     "register_title_button": "Đăng ký",
-    "regíter_no_account": "Đăng ký tài khoản",
+    "register_no_account": "Đăng ký tài khoản",
+    "register_password": "Nhập mật khẩu",
+    "register_confirm": "Nhập lại mật khẩu",
+    "register_confirm_error": "Hai mật khẩu không giống nhau, vui lòng thử lại!!!",
+    "register_success": "Tạo tài khoản thành công",
+    "register_otp_error": "Sai mã OTP",
+    "register_error": "Tạo tài khoản thất bại",
+    "register_data_fail": "Lỗi trong quá trình đọc dữ liệu",
     "register_end_use": "",
 
     "end_no_use": ""
