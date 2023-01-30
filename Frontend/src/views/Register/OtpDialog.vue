@@ -150,6 +150,7 @@ export default {
           district: this.item.district,
           address: this.item.adđress,
           otp_code: this.value.otp_code,
+          password: this.value.password,
         };
         const response = await registerServices.createAccount(body);
         const result = response.data;
