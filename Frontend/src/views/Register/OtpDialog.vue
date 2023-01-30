@@ -112,6 +112,7 @@ import { pageMixins } from "@/util/PageMixins";
 import { dateFormatMixins } from "@/util/DateFormat";
 
 import registerServices from "@/services/register/register.js";
+import router from "../../router";
 
 export default {
   components: { TooltipButton },
@@ -154,6 +155,7 @@ export default {
         const result = response.data;
         if (result && !result.error) {
           this.$SnackBar.show("success", this.$t("register_success"));
+          router.push("/login");
         } else {
           if (result.code === 201) {
             this.$SnackBar.show("error", this.$t("register_otp_error"));
