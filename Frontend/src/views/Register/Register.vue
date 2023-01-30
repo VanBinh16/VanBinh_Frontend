@@ -161,7 +161,7 @@ export default {
         email: this.value.email,
         phone: this.value.phone,
         province_id: this.value.province.id,
-        district_id: this.district.id,
+        district_id: this.value.district.id,
         address: this.value.address,
       };
       return newItem;
