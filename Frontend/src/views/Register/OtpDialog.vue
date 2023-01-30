@@ -146,9 +146,9 @@ export default {
           email: this.item.email,
           user_name: this.item.user_name,
           phone: this.item.phone,
-          province: this.item.province,
-          district: this.item.district,
-          address: this.item.adđress,
+          province_id: this.item.province_id,
+          district_id: this.item.district_id,
+          address: this.item.address,
           otp_code: this.value.otp_code,
           password: this.value.password,
         };
