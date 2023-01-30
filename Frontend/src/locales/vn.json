@@ -156,6 +156,18 @@
     "manage_type_service_update_success": "Cập nhật loại dịch vụ thành công",
     "manage_type_service_end_use": "",
 
+    "register_no_use": "",
+    "register_title": "ĐĂNG KÝ TÀI KHOẢN",
+    "register_user_name": "Họ và Tên",
+    "register_email": "Email",
+    "register_phone": "Số điện thoại",
+    "register_provice_name": "Tỉnh",
+    "register_district_name": "Huyện",
+    "register_address": "Địa chỉ",
+    "register_login_in": "Đăng nhập",
+    "register_title_button": "Đăng ký",
+    "regíter_no_account": "Đăng ký tài khoản",
+    "register_end_use": "",
 
     "end_no_use": ""
 

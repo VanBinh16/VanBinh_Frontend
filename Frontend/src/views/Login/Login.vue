@@ -32,13 +32,23 @@
             v-model="value.password"
             @click:append="showPassword = !showPassword"
             :rules="[rules.empty]"
+            hide-details
           />
+          <v-row class="ma-0" justify="end">
+            <h3
+              class="font-weight-bold green--text"
+              style="cursor: pointer"
+              @click="register()"
+            >
+              {{ $t("regíter_no_account") }}
+            </h3>
+          </v-row>
         </div>
       </v-form>
       <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
-        <v-btn @click="closeDialog" class="mr-4" outlined color="red">
+        <v-btn @click="forgotPassword()" class="mr-4" outlined color="red">
           {{ $t("login_btn_forget_password") }}
         </v-btn>
         <v-btn
@@ -82,6 +92,14 @@ export default {
   },
 
   methods: {
+    register: async function () {
+      router.push("/register");
+    },
+
+    forgotPassword: async function () {
+      console.warn("loading");
+    },
+
     getItem: function () {
       const newItem = {
         email: this.value.email,
