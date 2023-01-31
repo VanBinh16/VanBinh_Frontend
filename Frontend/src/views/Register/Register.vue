@@ -1,9 +1,6 @@
 <template>
   <v-app>
-    <div
-      class="login-page"
-      :style="{ 'background-image': `url('${background}')` }"
-    >
+    <div class="login-page" :style="{ 'background-image': `url('${background}')` }">
       <div class="login-form">
         <br />
         <h2 style="color: red; font-weight: 600">
@@ -11,96 +8,41 @@
         </h2>
         <v-form ref="form">
           <v-col cols="12" class="mb-0 pb-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="value.user_name"
-              type="text"
-              :label="$t('register_user_name')"
-              :rules="[rules.empty]"
-            />
+            <v-text-field dense outlined v-model="value.user_name" type="text" :label="$t('register_user_name')"
+              :rules="[rules.empty]" />
           </v-col>
           <v-col cols="12" class="mb-0 pb-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="value.email"
-              type="text"
-              :label="$t('register_email')"
-              :rules="[rules.empty]"
-            />
+            <v-text-field dense outlined v-model="value.email" type="text" :label="$t('register_email')"
+              :rules="[rules.empty]" />
           </v-col>
 
           <v-col cols="12" class="mb-0 pb-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="value.phone"
-              type="number"
-              :label="$t('register_phone')"
-              :rules="[rules.empty]"
-            />
+            <v-text-field dense outlined v-model="value.phone" type="number" :label="$t('register_phone')"
+              :rules="[rules.empty]" />
           </v-col>
 
           <v-col cols="12" class="mb-0 pb-4">
-            <v-autocomplete
-              dense
-              outlined
-              hide-details
-              v-model="value.province"
-              :items="provinces"
-              return-object
-              @change="getListDistrict()"
-              item-text="name"
-              item-value="id"
-              :label="$t('register_provice_name')"
-              :rules="[rules.empty]"
-            />
+            <v-autocomplete dense outlined hide-details v-model="value.province" :items="provinces" return-object
+              @change="getListDistrict()" item-text="name" item-value="id" :label="$t('register_provice_name')"
+              :rules="[rules.empty]" />
           </v-col>
           <v-col cols="12" class="mb-0 pb-4">
-            <v-autocomplete
-              dense
-              outlined
-              hide-details
-              return-object
-              v-model="value.district"
-              :items="districts"
-              item-text="name"
-              item-value="id"
-              :label="$t('register_district_name')"
-              :rules="[rules.empty]"
-            />
+            <v-autocomplete dense outlined hide-details return-object v-model="value.district" :items="districts"
+              item-text="name" item-value="id" :label="$t('register_district_name')" :rules="[rules.empty]" />
           </v-col>
 
           <v-col cols="12" class="mb-0 pb-0">
-            <v-textarea
-              dense
-              outlined
-              :label="$t('register_address')"
-              v-model="value.address"
-            />
+            <v-textarea dense outlined :label="$t('register_address')" v-model="value.address" />
           </v-col>
           <v-row style="margin-left: 2px; margin-right: 2px">
             <v-col cols="6" class="mb-0 pb-0">
-              <v-btn
-                large
-                color="primary"
-                @click="login"
-                class="white--text ml-0"
-                style="width: 100%"
-              >
+              <v-btn large color="primary" @click="login" class="white--text ml-0" style="width: 100%">
                 {{ $t("register_login_in") }}
               </v-btn>
             </v-col>
 
             <v-col cols="6" class="mb-0 pb-0">
-              <v-btn
-                large
-                color="error"
-                @click="register"
-                class="white--text ml-0"
-                style="width: 100%"
-              >
+              <v-btn large color="error" @click="register" class="white--text ml-0" style="width: 100%">
                 {{ $t("register_title_button") }}
               </v-btn>
             </v-col>
@@ -110,11 +52,7 @@
       </div>
     </div>
 
-    <otp-dialog
-      :show="otpDialog.show"
-      :item="otpDialog.item"
-      @close-dialog="otpDialog.show = false"
-    />
+    <otp-dialog :show="otpDialog.show" :item="otpDialog.item" @close-dialog="otpDialog.show = false" />
   </v-app>
 </template>
 
@@ -203,9 +141,7 @@ export default {
     getListDistrict: async function () {
       //if (!this.value.province) return;
       const params = {
-        province_id: this.item.province_id
-          ? this.item.province_id
-          : this.value.province.id,
+        province_id: this.value.province.id,
       };
       const response = await addressServices.getListDistrict(params);
       const result = response.data;
