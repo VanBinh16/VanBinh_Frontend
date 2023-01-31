@@ -242,6 +242,12 @@ export default {
             icon: "mdi-account-wrench",
             to: "/manage/type_service",
           },
+          //loại sản phẩm
+          {
+            title: "menu_manage_type_product_title",
+            icon: "mdi-bird",
+            to: "/manage/type_product",
+          },
         ],
       },
     ],

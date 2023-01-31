@@ -19,6 +19,7 @@
     "menu_manage_pertment_position_title": "Loại nhân viên",
     "menu_manage_staff_title": "Nhân viên",
     "menu_manage_service_title": "Loại dịch vụ",
+    "menu_manage_type_product_title": "Loại sản phẩm",
     "menu_end_no_use": "",
 
     "chang_string_teamplate_strart_no_use": "",
@@ -176,6 +177,22 @@
     "register_data_fail": "Lỗi trong quá trình đọc dữ liệu",
     "register_email_error": "Email này đã đăng ký tài khoản, cui lòng nhập lại email!!!",
     "register_end_use": "",
+
+    "type_product_start_no_use": "",
+    "type_product_title": "Loại sản phẩm",
+    "type_product_code": "Mã loại sản phẩm",
+    "type_product_name": "Tên loại sản phẩm",
+    "type_product_notes": "Ghi chú",
+    "type_product_add_title": "Thêm loại sản phẩm",
+    "type_product_update_title": "Cập nhật loại sản phảm",
+    "type_product_add_success": "Thêm loại sản phẩm thành công",
+    "type_product_add_exist_error": "Loại sản phẩm đã tồn tại, thêm thất bại",
+    "type_product_error_data": "Có lỗi trong quá trình lấy dữ liệu, vui lòng thử lại sau",
+    "type_product_error_concect": "Có lỗi trong quá trình kết nối, vui lòng thử lại sau",
+    "type_product_update_success": "Cập nhật loại sản phẩm thành công",
+    "type_product_delete_title": "Xoá loại sản phẩm",
+    "type_product_delete_success": "Xoá loại sản phẩm thành công",
+    "type_product_end_no_use": "",
 
     "end_no_use": ""
 

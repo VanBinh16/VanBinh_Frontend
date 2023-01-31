@@ -16,7 +16,7 @@
             dense
             outlined
             type="text"
-            :label="$t('manage_type_service_code')"
+            :label="$t('type_product_code')"
             v-model="value.code"
             :rules="[rules.empty]"
             :readonly="type === 'update'"
@@ -26,7 +26,7 @@
             dense
             outlined
             type="text"
-            :label="$t('manage_type_service_name')"
+            :label="$t('type_product_name')"
             v-model="value.name"
             :rules="[rules.empty]"
           />
@@ -34,7 +34,7 @@
           <v-textarea
             dense
             outlined
-            :label="$t('manage_type_service_notes')"
+            :label="$t('type_product_notes')"
             v-model="value.notes"
           />
         </v-form>
@@ -69,7 +69,7 @@ import moment from "moment";
 
 import { pageMixins } from "@/util/PageMixins";
 
-import typeServiceServices from "@/services/type_service/type_service.js";
+import typeProductServices from "@/services/type_product/type_product.js";
 
 export default {
   props: ["show", "type", "item"],
@@ -94,12 +94,12 @@ export default {
 
       if (this.type === "add") {
         this.text = {
-          title: this.$t("manage_type_service_add_title"),
+          title: this.$t("type_product_add_title"),
           action: this.$t("tooltip_button_add_title"),
         };
       } else if (this.type === "update") {
         this.text = {
-          title: this.$t("manage_type_service_update_title"),
+          title: this.$t("type_product_update_title"),
           action: this.$t("tooltip_button_update_title"),
         };
 
@@ -131,25 +131,25 @@ export default {
       try {
         if (!this.$refs.form.validate()) return;
         const body = this.getItem();
-        const response = await typeServiceServices.create(body);
+        const response = await typeProductServices.create(body);
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");
           this.$SnackBar.show(
             "success",
-            this.$t("manage_type_service_add_success")
+            this.$t("type_product_add_success")
           );
         } else {
           if (result.code === 201) {
             this.$SnackBar.show(
               "error",
-              this.$t("manage_type_service_add_error_exist")
+              this.$t("type_product_add_exist_error")
             );
             return;
           } else {
             this.$SnackBar.show(
               "error",
-              this.$t("manage_type_service_data_error")
+              this.$t("type_product_error_data")
             );
             return;
           }
@@ -157,7 +157,7 @@ export default {
       } catch (e) {
         this.$SnackBar.show(
           "error",
-          this.$t("manage_type_service_connect_error")
+          this.$t("type_product_error_concect")
         );
       }
       this.closeInfoDialog();
@@ -169,21 +169,21 @@ export default {
         const body = this.getItem();
         delete body.code;
         body.id = this.item.id;
-        const response = await typeServiceServices.update(body);
+        const response = await typeProductServices.update(body);
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");
           this.$SnackBar.show(
             "success",
-            this.$t("manage_type_service_update_success")
+            this.$t("type_product_update_success")
           );
         } else {
-          this.$SnackBar.show("error", this.$t("manage_type_service_data_error"));
+          this.$SnackBar.show("error", this.$t("type_product_error_data"));
         }
       } catch (e) {
         this.$SnackBar.show(
           "error",
-          this.$t("manage_type_service_connect_error")
+          this.$t("type_product_error_concect")
         );
       }
       this.closeInfoDialog();

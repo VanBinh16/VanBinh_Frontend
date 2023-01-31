@@ -4,7 +4,7 @@
       <template #heading>
         <v-row>
           <v-col cols="12" md="4">
-            <h2>{{ $t("manage_type_service_title") }}</h2>
+            <h2>{{ $t("type_product_title") }}</h2>
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" md="4">
@@ -118,7 +118,7 @@
 import InfoDialog from "./InfoDialog.vue";
 import DeleteDialog from "./DeleteDialog.vue";
 
-import typeServiceServices from "@/services/type_service/type_service.js";
+import typeProductServices from "@/services/type_product/type_product.js";
 
 import TooltipButton from "@/components/TooltipButton";
 
@@ -149,17 +149,17 @@ export default {
           width: "200",
         },
         {
-          text: this.$t("manage_type_service_code"),
+          text: this.$t("type_product_code"),
           value: "code",
           width: "160",
         },
         {
-          text: this.$t("manage_type_service_name"),
+          text: this.$t("type_product_name"),
           value: "name",
           width: "220",
         },
         {
-          text: this.$t("manage_type_service_notes"),
+          text: this.$t("type_product_notes"),
           value: "notes",
         },
       ],
@@ -170,7 +170,7 @@ export default {
   },
   methods: {
     getList: async function () {
-      const response = await typeServiceServices.getList();
+      const response = await typeProductServices.getList();
       const result = response.data;
       if (result && !result.error) {
         this.typeServices = result.data.map((item, idx) => ({
