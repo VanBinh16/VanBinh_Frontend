@@ -70,7 +70,7 @@ import { dateFormatMixins } from "@/util/DateFormat";
 import DrawerDialog from "@/components/core/Drawer.vue";
 import router from "../../router";
 
-import staffServices from "@/services/staff/account_staff.js";
+import loginServices from "@/services/login/login.js";
 
 export default {
   components: { TooltipButton, DrawerDialog },
@@ -113,7 +113,7 @@ export default {
       localStorage.clear();
       try {
         const body = this.getItem();
-        const response = await staffServices.login(body);
+        const response = await loginServices.login(body);
         const result = response.data;
         if (result && !result.error) {
           localStorage.setItem("id", 1606);
