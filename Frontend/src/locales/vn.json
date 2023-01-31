@@ -174,6 +174,7 @@
     "register_otp_error": "Sai mã OTP",
     "register_error": "Tạo tài khoản thất bại",
     "register_data_fail": "Lỗi trong quá trình đọc dữ liệu",
+    "register_email_error": "Email này đã đăng ký tài khoản, cui lòng nhập lại email!!!",
     "register_end_use": "",
 
     "end_no_use": ""

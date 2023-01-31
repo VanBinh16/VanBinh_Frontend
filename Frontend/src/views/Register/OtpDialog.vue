@@ -84,6 +84,9 @@
             <p class="font-weight-bold red--text" v-if="this.password == true">
               {{ $t("register_confirm_error") }}
             </p>
+            <p class="font-weight-bold red--text" v-if="this.account == true">
+              {{ $t("register_email_error") }}
+            </p>
           </v-row>
         </div>
       </v-form>
@@ -123,6 +126,7 @@ export default {
       showPasswordConfirm: false,
       value: {},
       password: false,
+      account: false,
     };
   },
   props: {
@@ -158,7 +162,10 @@ export default {
           this.$SnackBar.show("success", this.$t("register_success"));
           router.push("/login");
         } else {
-          if (result.code === 201) {
+          if (result.code === 200) {
+            this.account = true;
+            return;
+          } else if (result.code === 201) {
             this.$SnackBar.show("error", this.$t("register_otp_error"));
             return;
           } else {
