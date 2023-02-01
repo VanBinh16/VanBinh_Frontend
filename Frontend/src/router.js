@@ -14,6 +14,8 @@ import Manage_Staff from "@/views/Manage/Staff";
 import Manage_Type_Service from "@/views/Manage/TypeService";
 //loại sản phẩm
 import Manage_Type_Product from "@/views/Manage/TypeProduct";
+//sản phẩm
+import Manage_Product from "@/views/Manage/Product";
 
 //DEMO
 import Demo_ConcectApi from "@/views/Demo/ConcectApi";
@@ -148,6 +150,12 @@ let router = new Router({
           path: "/manage/type_product",
           name: "Manage  Type Product",
           component: Manage_Type_Product,
+        },
+         // Sản phẩm
+         {
+          path: "/manage/product",
+          name: "Manage  Product",
+          component: Manage_Product,
         },
       ],
     },

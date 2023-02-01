@@ -248,6 +248,12 @@ export default {
             icon: "mdi-bird",
             to: "/manage/type_product",
           },
+          //sản phẩm
+          {
+            title: "menu_manage_product_title",
+            icon: "mdi-cart-heart",
+            to: "/manage/product",
+          },
         ],
       },
     ],

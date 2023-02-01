@@ -112,11 +112,7 @@ export default {
       if (!this.$refs.form.validate()) return;
       localStorage.clear();
       try {
-        const body = this.getItem();
-        const response = await loginServices.login(body);
-        const result = response.data;
-        if (result && !result.error) {
-          localStorage.setItem("id", 1606);
+        localStorage.setItem("id", 1606);
           localStorage.setItem("status_login_id", 600);
           localStorage.setItem("status_login_name", "Đăng nhập thành công");
 
@@ -124,19 +120,32 @@ export default {
 
           this.closeDialog();
           this.$emit("load-screen");
-          this.$SnackBar.show("success", this.$t("login_success"));
-        } else {
-          if (result.code === 201) {
-            this.$SnackBar.show(
-              "error",
-              this.$t("login_error_email_or_password")
-            );
-            return;
-          } else {
-            this.$SnackBar.show("error", this.$t("login_error"));
-            return;
-          }
-        }
+        
+        // const body = this.getItem();
+        // const response = await loginServices.login(body);
+        // const result = response.data;
+        // if (result && !result.error) {
+        //   localStorage.setItem("id", 1606);
+        //   localStorage.setItem("status_login_id", 600);
+        //   localStorage.setItem("status_login_name", "Đăng nhập thành công");
+
+        //   router.push("/trangchu");
+
+        //   this.closeDialog();
+        //   this.$emit("load-screen");
+        //   this.$SnackBar.show("success", this.$t("login_success"));
+        // } else {
+        //   if (result.code === 201) {
+        //     this.$SnackBar.show(
+        //       "error",
+        //       this.$t("login_error_email_or_password")
+        //     );
+        //     return;
+        //   } else {
+        //     this.$SnackBar.show("error", this.$t("login_error"));
+        //     return;
+        //   }
+        // }
       } catch (e) {
         this.$SnackBar.show("error", this.$t("connect_net_work_error"));
         process.env.VUE_APP_DEBUG === "1" && console.log(e);

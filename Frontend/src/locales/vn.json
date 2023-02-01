@@ -20,6 +20,7 @@
     "menu_manage_staff_title": "Nhân viên",
     "menu_manage_service_title": "Loại dịch vụ",
     "menu_manage_type_product_title": "Loại sản phẩm",
+    "menu_manage_product_title": "Sản phẩm",
     "menu_end_no_use": "",
 
     "chang_string_teamplate_strart_no_use": "",
@@ -195,6 +196,23 @@
     "type_product_delete_title": "Xoá loại sản phẩm",
     "type_product_delete_success": "Xoá loại sản phẩm thành công",
     "type_product_end_no_use": "",
+
+    "product_start_no_use": "",
+    "product_title": "Sản phẩm",
+    "product_code": "Mã sản phẩm",
+    "product_name": "Tên sản phẩm",
+    "product_type_name": "Loại sản phẩm",
+    "product_notes": "Ghi chú",
+    "product_delete_title": "Xoá sản phẩm",
+    "product_delete_success": "Xoá sản phẩm thành công",
+    "product_connect_error": "Lỗi kết nói máy chủ",
+    "product_get_data_error": "Có lỗi trong quá trình lấy dữ liệu, vui lòng thử lại",
+    "product_add_title": "Thêm sản phẩm",
+    "product_update_title": "Cập nhật sản phẩm",
+    "product_add_success": "Thêm sản phẩm thành công",
+    "product_add_exist_error": "Sản phẩm đã tồn tại, thêm thất bại",
+    "product_update_success": "Cập nhật sản phẩm thành công",
+    "product_end_no_use": "",
 
     "end_no_use": ""
 
