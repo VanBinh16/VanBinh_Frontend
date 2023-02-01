@@ -37,7 +37,7 @@
                   dense
                   outlined
                   v-model="value.company_name"
-                  type="number"
+                  type="text"
                   :label="$t('register_company_name')"
                   :rules="[rules.empty]"
                 />
