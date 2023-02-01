@@ -153,6 +153,8 @@ export default {
           province_id: this.item.province_id,
           district_id: this.item.district_id,
           address: this.item.address,
+          company_code: this.item.company_code,
+          company_name: this.item.company_name,
           otp_code: this.value.otp_code,
           password: this.value.password,
         };

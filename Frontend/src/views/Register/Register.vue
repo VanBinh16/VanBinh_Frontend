@@ -9,104 +9,139 @@
         <h2 style="color: red; font-weight: 600">
           {{ $t("register_title") }}
         </h2>
-        <v-form ref="form">
-          <v-col cols="12" class="mb-0 pb-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="value.user_name"
-              type="text"
-              :label="$t('register_user_name')"
-              :rules="[rules.empty]"
-            />
-          </v-col>
-          <v-col cols="12" class="mb-0 pb-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="value.email"
-              type="text"
-              :label="$t('register_email')"
-              :rules="[rules.empty]"
-            />
-          </v-col>
 
-          <v-col cols="12" class="mb-0 pb-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="value.phone"
-              type="number"
-              :label="$t('register_phone')"
-              :rules="[rules.empty]"
-            />
-          </v-col>
+        <v-card-text class="ma-0 mt-5">
+          <v-form ref="form">
+            <v-row>
+              <v-col cols="12" class="mb-0 pb-0">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="value.user_name"
+                  type="text"
+                  :label="$t('register_user_name')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+            </v-row>
 
-          <v-col cols="12" class="mb-0 pb-4">
-            <v-autocomplete
-              dense
-              outlined
-              hide-details
-              v-model="value.province"
-              :items="provinces"
-              return-object
-              @change="getListDistrict()"
-              item-text="name"
-              item-value="id"
-              :label="$t('register_provice_name')"
-              :rules="[rules.empty]"
-            />
-          </v-col>
-          <v-col cols="12" class="mb-0 pb-4">
-            <v-autocomplete
-              dense
-              outlined
-              hide-details
-              return-object
-              v-model="value.district"
-              :items="districts"
-              item-text="name"
-              item-value="id"
-              :label="$t('register_district_name')"
-              :rules="[rules.empty]"
-            />
-          </v-col>
+            <v-row>
+              <v-col cols="6" class="mb-0 pb-0">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="value.company_code"
+                  type="text"
+                  :label="$t('register_company_code')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+              <v-col cols="6" class="mb-0 pb-0">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="value.company_name"
+                  type="number"
+                  :label="$t('register_company_name')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+            </v-row>
 
-          <v-col cols="12" class="mb-0 pb-0">
-            <v-textarea
-              dense
-              outlined
-              :label="$t('register_address')"
-              v-model="value.address"
-            />
-          </v-col>
-          <v-row style="margin-left: 2px; margin-right: 2px">
-            <v-col cols="6" class="mb-0 pb-0">
-              <v-btn
-                large
-                color="primary"
-                @click="login"
-                class="white--text ml-0"
-                style="width: 100%"
-              >
-                {{ $t("register_login_in") }}
-              </v-btn>
-            </v-col>
+            <v-row>
+              <v-col cols="6" class="mb-0 pb-0">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="value.email"
+                  type="text"
+                  :label="$t('register_email')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+              <v-col cols="6" class="mb-0 pb-0">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="value.phone"
+                  type="number"
+                  :label="$t('register_phone')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+            </v-row>
 
-            <v-col cols="6" class="mb-0 pb-0">
-              <v-btn
-                large
-                color="error"
-                @click="register"
-                class="white--text ml-0"
-                style="width: 100%"
-              >
-                {{ $t("register_title_button") }}
-              </v-btn>
-            </v-col>
-          </v-row>
-          <br />
-        </v-form>
+            <v-row>
+              <v-col cols="6" class="mb-0 pb-4">
+                <v-autocomplete
+                  dense
+                  outlined
+                  hide-details
+                  v-model="value.province"
+                  :items="provinces"
+                  return-object
+                  @change="getListDistrict()"
+                  item-text="name"
+                  item-value="id"
+                  :label="$t('register_provice_name')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+              <v-col cols="6" class="mb-0 pb-4">
+                <v-autocomplete
+                  dense
+                  outlined
+                  hide-details
+                  return-object
+                  v-model="value.district"
+                  :items="districts"
+                  item-text="name"
+                  item-value="id"
+                  :label="$t('register_district_name')"
+                  :rules="[rules.empty]"
+                />
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12" class="mb-0 pb-0">
+                <v-textarea
+                  dense
+                  outlined
+                  :label="$t('register_address')"
+                  v-model="value.address"
+                />
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="6" class="mb-0 pb-0">
+                <v-btn
+                  large
+                  color="primary"
+                  @click="login"
+                  class="white--text ml-0"
+                  style="width: 100%"
+                >
+                  {{ $t("register_login_in") }}
+                </v-btn>
+              </v-col>
+
+              <v-col cols="6" class="mb-0 pb-0">
+                <v-btn
+                  large
+                  color="error"
+                  @click="register"
+                  class="white--text ml-0"
+                  style="width: 100%"
+                >
+                  {{ $t("register_title_button") }}
+                </v-btn>
+              </v-col>
+            </v-row>
+            <br />
+          </v-form>
+        </v-card-text>
       </div>
     </div>
 
@@ -163,6 +198,8 @@ export default {
         province_id: this.value.province.id,
         district_id: this.value.district.id,
         address: this.value.address,
+        company_code: this.value.company_code,
+        company_name: this.value.company_name,
       };
       return newItem;
     },
@@ -171,7 +208,6 @@ export default {
       if (!this.$refs.form.validate()) return;
       try {
         const body = this.getItem();
-        this.openOtpDialog(body);
         const response = await registerServices.sentOTP({
           email: this.value.email,
         });
@@ -230,7 +266,8 @@ export default {
   height: 100vh;
   background-color: #ffffff;
   margin: auto;
-  padding-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .login-form {
@@ -238,6 +275,9 @@ export default {
   z-index: 1;
   background: #ffffff;
   max-width: 80%;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin: 0 auto 100px;
   /* padding: 50px; */
   text-align: center;
