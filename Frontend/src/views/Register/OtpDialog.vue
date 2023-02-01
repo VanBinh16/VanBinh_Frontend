@@ -1,10 +1,5 @@
 <template>
-  <v-dialog
-    @keydown.esc="closeDialog"
-    v-model="show"
-    persistent
-    max-width="450px"
-  >
+  <v-dialog @keydown.esc="closeDialog" v-model="show" persistent max-width="450px">
     <v-card>
       <v-card-title class="headline blue darken-2 white--text font-weight-bold">
         {{ $t("manage_staff_input_otp") }}
@@ -17,13 +12,7 @@
               <span class="label">{{ $t("manage_staff_email") }}:</span>
             </v-col>
             <v-col class="pa-0" cols="8">
-              <v-text-field
-                dense
-                outlined
-                type="text"
-                v-model="item.email"
-                readonly
-              />
+              <v-text-field dense outlined type="text" v-model="item.email" readonly />
             </v-col>
           </v-row>
 
@@ -32,17 +21,9 @@
               <span class="label">{{ $t("register_password") }}:</span>
             </v-col>
             <v-col class="pa-0" cols="8">
-              <v-text-field
-                dense
-                outlined
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showPassword ? 'text' : 'password'"
-                :label="$t('login_password')"
-                v-model="value.password"
-                @click:append="showPassword = !showPassword"
-                :rules="[rules.empty]"
-                hide-details
-              />
+              <v-text-field dense outlined :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="showPassword ? 'text' : 'password'" :label="$t('login_password')" v-model="value.password"
+                @click:append="showPassword = !showPassword" :rules="[rules.empty]" hide-details />
             </v-col>
           </v-row>
 
@@ -51,17 +32,10 @@
               <span class="label">{{ $t("register_confirm") }}:</span>
             </v-col>
             <v-col class="pa-0" cols="8">
-              <v-text-field
-                dense
-                outlined
-                :append-icon="showPasswordConfirm ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showPasswordConfirm ? 'text' : 'password'"
-                :label="$t('login_password')"
-                v-model="value.password_confirm"
-                @click:append="showPasswordConfirm = !showPasswordConfirm"
-                :rules="[rules.empty]"
-                hide-details
-              />
+              <v-text-field dense outlined :append-icon="showPasswordConfirm ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="showPasswordConfirm ? 'text' : 'password'" :label="$t('login_password')"
+                v-model="value.password_confirm" @click:append="showPasswordConfirm = !showPasswordConfirm"
+                :rules="[rules.empty]" hide-details />
             </v-col>
           </v-row>
 
@@ -70,13 +44,7 @@
               <span class="label">{{ $t("manage_staff_input_otp") }}:</span>
             </v-col>
             <v-col class="pa-0" cols="8">
-              <v-text-field
-                dense
-                outlined
-                type="number"
-                v-model="value.otp_code"
-                :rules="[rules.empty]"
-              />
+              <v-text-field dense outlined type="number" v-model="value.otp_code" :rules="[rules.empty]" />
             </v-col>
           </v-row>
 
@@ -97,11 +65,7 @@
         <v-btn @click="closeDialog" class="mr-4" outlined color="blue">
           {{ $t("button_close") }}
         </v-btn>
-        <v-btn
-          color="blue darken-2"
-          class="white--text font-weight-bold"
-          @click="comfirmAction"
-        >
+        <v-btn color="blue darken-2" class="white--text font-weight-bold" @click="comfirmAction">
           {{ $t("button_comfirm") }}
         </v-btn>
       </v-card-actions>
@@ -124,7 +88,8 @@ export default {
     return {
       showPassword: false,
       showPasswordConfirm: false,
-      value: {},
+      value: {
+      },
       password: false,
       account: false,
     };
@@ -135,6 +100,13 @@ export default {
       type: Boolean,
       default: false,
       required: true,
+    },
+  },
+
+  watch: {
+    show: async function () {
+      //reset from không chạy vào rulue
+      this.$refs.form && this.$refs.form.resetValidation();
     },
   },
 
@@ -181,6 +153,8 @@ export default {
       this.closeDialog();
     },
     closeDialog() {
+      this.value = {};
+      this.password = false;
       this.$emit("close-dialog");
     },
   },

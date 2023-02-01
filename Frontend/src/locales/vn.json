@@ -175,9 +175,9 @@
     "register_otp_error": "Sai mã OTP",
     "register_error": "Tạo tài khoản thất bại",
     "register_data_fail": "Lỗi trong quá trình đọc dữ liệu",
-    "register_email_error": "Email này đã đăng ký tài khoản, cui lòng nhập lại email!!!",
     "register_company_code": "Mã cửa hàng",
     "register_company_name": "Tên cửa hàng",
+    "register_email_error": "Email này đã đăng ký tài khoản, vui lòng nhập lại email!!!",
     "register_end_use": "",
 
     "type_product_start_no_use": "",

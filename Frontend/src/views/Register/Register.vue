@@ -1,15 +1,11 @@
 <template>
   <v-app>
-    <div
-      class="login-page"
-      :style="{ 'background-image': `url('${background}')` }"
-    >
+    <div class="login-page" :style="{ 'background-image': `url('${background}')` }">
       <div class="login-form">
         <br />
         <h2 style="color: red; font-weight: 600">
           {{ $t("register_title") }}
         </h2>
-
         <v-card-text class="ma-0 mt-5">
           <v-form ref="form">
             <v-row>
@@ -145,11 +141,7 @@
       </div>
     </div>
 
-    <otp-dialog
-      :show="otpDialog.show"
-      :item="otpDialog.item"
-      @close-dialog="otpDialog.show = false"
-    />
+    <otp-dialog :show="otpDialog.show" :item="otpDialog.item" @close-dialog="otpDialog.show = false" />
   </v-app>
 </template>
 
@@ -239,9 +231,7 @@ export default {
     getListDistrict: async function () {
       //if (!this.value.province) return;
       const params = {
-        province_id: this.item.province_id
-          ? this.item.province_id
-          : this.value.province.id,
+        province_id: this.value.province.id,
       };
       const response = await addressServices.getListDistrict(params);
       const result = response.data;
