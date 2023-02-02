@@ -212,6 +212,10 @@
     "product_add_success": "Thêm sản phẩm thành công",
     "product_add_exist_error": "Sản phẩm đã tồn tại, thêm thất bại",
     "product_update_success": "Cập nhật sản phẩm thành công",
+    "product_add_detail_title": "Thêm chi tiết",
+    "product_detail_title": "Chi tiết sản phẩm",
+    "product_add_detail_product_type": "Thêm chi tiết sản phẩm",
+    "product_update_detail_product_type": "Cập nhật chi tiết sản phẩm",
     "product_end_no_use": "",
 
     "end_no_use": ""

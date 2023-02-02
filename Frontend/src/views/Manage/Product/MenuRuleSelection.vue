@@ -1,15 +1,9 @@
 <template>
   <v-menu v-model="menu" offset-x :close-on-content-click="false" top>
     <template v-slot:activator="{ on: menu, attrs }">
-      <v-btn
-        class="elevation-0 ma-0 green darken-3 font-weight-bold"
-        v-if="type === 'create'"
-        v-on="menu"
-        v-bind="attrs"
-        :disabled="!customer ? true : false"
-        @click="onBtnClick"
-      >
-        {{ $t("unloading_fee_depot_barem_add_detail") }}
+      <v-btn class="elevation-0 ma-0 green darken-3 font-weight-bold" v-if="type === 'create'" v-on="menu"
+        v-bind="attrs" :disabled="!type_product ? true : false" @click="onBtnClick">
+        {{ $t("product_add_detail_title") }}
       </v-btn>
 
       <v-tooltip v-if="type === 'update'" bottom>
@@ -18,126 +12,23 @@
             <v-icon color="blue">mdi-pencil</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t("unloading_fee_depot_barem_update_detail") }}</span>
+        <span>{{ $t("product_detail_title") }}</span>
       </v-tooltip>
     </template>
     <v-form ref="form" class="white pa-5" style="width: 600px;">
-      <h2 v-if="type === 'create'" class="black--text mb-3">{{ $t("unloading_fee_depot_barem_add_detail") }}</h2>
-      <h2 v-if="type === 'update'" class="black--text mb-3">{{ $t("unloading_fee_depot_barem_update_detail") }}</h2>
+      <h2 v-if="type === 'create'" class="black--text mb-3">{{ $t("product_add_detail_product_type") }}</h2>
+      <h2 v-if="type === 'update'" class="black--text mb-3">{{ $t("product_update_detail_product_type") }}</h2>
 
-      <v-autocomplete
-        dense
-        outlined
-        v-model="value.type_name"
-        item-text="display"
-        return-object
-        :items="unloadingFeeDepotBaremDetailTypes"
-        :label="$t('unloading_fee_depot_barem_type_calculation_name')"
-        :rules="[notEmpty]"
-        @change="changType"
-      />
 
-      <!-- tính theo chuyến ( type_id ==1) -->
-      <div v-if="this.value.type_ids == 1">
-        <v-text-field
-          dense
-          outlined
-          type="number"
-          :label="$t('unloading_fee_depot_barem_price')"
-          v-model="value.price"
-          :rules="[notEmpty]"
-        />
-      </div>
-
-      <!-- tính theo số lượng lái xe ( type_id ==2) -->
-      <div v-if="this.value.type_ids == 2">
-        <v-autocomplete
-          dense
-          outlined
-          v-model="value.vehicle_load_type_group"
-          item-text="display"
-          return-object
-          :items="vehicleLoadTypeGroups"
-          :label="$t('unloading_fee_depot_barem_vehicle_load_type_group_name')"
-          :rules="[notEmpty]"
-          :readonly="type === 'update'"
-        />
-
-        <v-text-field
-          dense
-          outlined
-          type="number"
-          :label="$t('unloading_fee_depot_barem_price')"
-          v-model="value.price"
-          :rules="[notEmpty]"
-        />
-
-        <v-text-field
-          dense
-          outlined
-          type="number"
-          :label="$t('unloading_fee_depot_barem_num_drivers')"
-          v-model="value.driver_number"
-          :rules="[notEmpty]"
-        />
-      </div>
-
-      <!-- tính theo cbm ( type_id ==3) -->
-      <div v-if="this.value.type_ids == 3">
-        <v-text-field
-          dense
-          outlined
-          type="number"
-          :label="$t('unloading_fee_depot_barem_price')"
-          v-model="value.price"
-          :rules="[notEmpty]"
-        />
-      </div>
-
-      <!-- tính theo tải trọng book ( type_id == 4) -->
-      <div v-if="this.value.type_ids == 4">
-        <v-text-field
-          dense
-          outlined
-          type="number"
-          :label="$t('unloading_fee_depot_barem_price')"
-          v-model="value.price"
-          :rules="[notEmpty]"
-        />
-      </div>
-
-      <!-- tính theo chuyến ( type_id ==5) -->
-      <div v-if="(this.value.type_ids == 5)">
-        <v-autocomplete
-          dense
-          outlined
-          v-model="value.vehicle_load_type_group"
-          item-text="display"
-          return-object
-          :items="vehicleLoadTypeGroups"
-          :label="$t('unloading_fee_depot_barem_vehicle_load_type_group_name')"
-          :rules="[notEmpty]"
-          :readonly="type === 'update'"
-        />
-
-        <v-text-field
-          dense
-          outlined
-          type="number"
-          :label="$t('unloading_fee_depot_barem_price')"
-          v-model="value.price"
-          :rules="[notEmpty]"
-        />
-      </div>
 
       <v-row class="ma-0 pa-0 mt-5">
         <v-spacer></v-spacer>
-        <v-btn depressed class="ma-0 pa-0 mr-5 grey darken-3" @click="menu = false">{{ $t("button_cancel") }}</v-btn>
+        <v-btn depressed class="ma-0 pa-0 mr-5 grey darken-3" @click="menu = false">{{ $t("button_close") }}</v-btn>
         <v-btn v-if="type === 'create'" depressed class="ma-0 pa-0 green darken-3" @click="submit">{{
-          $t("button_add")
+          $t("tooltip_button_add_title")
         }}</v-btn>
         <v-btn v-if="type === 'update'" depressed class="ma-0 pa-0 green darken-3" @click="submit">{{
-          $t("button_update")
+          $t("tooltip_button_update_title")
         }}</v-btn>
       </v-row>
     </v-form>
@@ -155,31 +46,40 @@ export default {
   name: "RuleSelection",
   props: [
     "type",
-    "customer",
-    "customerBrand",
-    "crudUnloadingFeeDepotBarem",
-    "item",
-    "data",
-    "itemIndex",
-    "customerProducts",
-    "productTypes",
-    "locationTypesProps",
-    "ignoredGroupIds",
+    "type_product",
+    "crudProductDetail",
   ],
   mixins: [pageMixins],
   data() {
     return {
       menu: false,
       value: {},
-      vehicleLoadTypeGroups: [],
-      unloadingFeeDepotBaremDetailTypes: [],
-      notEmpty: (v) => !!v || this.$t("rules_empty"),
     };
   },
   methods: {
-    
+    submit() {
+      if (!this.$refs.form.validate()) return;
+
+      this.crudProductDetail(barem, this.type);
+      this.menu = false;
+    },
+  },
+
+  async onBtnClick() {
+    this.setData();
+  },
+
+  setData() {
+    console.warn("thiss.type", this.type);
+    if (this.type === "create") {
+      this.value = {};
+      this.$refs.form && this.$refs.form.resetValidation();
+      return;
+    }
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

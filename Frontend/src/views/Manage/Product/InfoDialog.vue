@@ -54,10 +54,8 @@
 
           <menu-rule-selection
             type="create"
-            :customer="value.name"
-            :customerBrand="value.customer_brand"
-           
-            :crudUnloadingFeeDepotBarem="crudUnloadingFeeDepotBarem"
+            :type_product="value.type_product"
+            :crudProductDetail="crudProductDetail"
             :item="value.data"
             :items="value.data"
           />
@@ -144,13 +142,8 @@ export default {
       }
     },
   },
-  computed: {
-    computeIgnoredGroupIds: function () {
-     console.warn("váo đây");
-    },
-  },
   methods: {
-    crudUnloadingFeeDepotBarem(barem, type, index) {
+    crudProductDetail(barem, type, index) {
       console.warn("thêm 1 dòng mới");
       return;
     },

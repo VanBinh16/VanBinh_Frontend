@@ -102,7 +102,7 @@
           :type="infoDialog.type"
           :item="infoDialog.item"
           @close-dialog="infoDialog.show = false"
-          @reload-table="getListBranch"
+          @reload-table="getListProduct"
         />
 
         <!-- delete dialog -->
@@ -110,7 +110,7 @@
           :show="deleteDialog.show"
           :item="deleteDialog.item"
           @close-dialog="deleteDialog.show = false"
-          @reload-table="getListBranch"
+          @reload-table="getListProduct"
         />
       </v-card>
     </base-material-card>
@@ -174,10 +174,10 @@ export default {
     };
   },
   mounted: async function () {
-    await this.getList();
+    await this.getListProduct();
   },
   methods: {
-    getList: async function () {
+    getListProduct: async function () {
       const response = await productServices.getList();
       const result = response.data;
       if (result && !result.error) {
