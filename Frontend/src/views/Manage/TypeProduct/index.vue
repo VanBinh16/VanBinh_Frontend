@@ -99,7 +99,7 @@
           :type="infoDialog.type"
           :item="infoDialog.item"
           @close-dialog="infoDialog.show = false"
-          @reload-table="getListBranch"
+          @reload-table="getList"
         />
 
         <!-- delete dialog -->
@@ -107,7 +107,7 @@
           :show="deleteDialog.show"
           :item="deleteDialog.item"
           @close-dialog="deleteDialog.show = false"
-          @reload-table="getListBranch"
+          @reload-table="getList"
         />
       </v-card>
     </base-material-card>
