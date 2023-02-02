@@ -51,6 +51,16 @@
             :label="$t('type_product_notes')"
             v-model="value.notes"
           />
+
+          <menu-rule-selection
+            type="create"
+            :customer="value.name"
+            :customerBrand="value.customer_brand"
+           
+            :crudUnloadingFeeDepotBarem="crudUnloadingFeeDepotBarem"
+            :item="value.data"
+            :items="value.data"
+          />
         </v-form>
       </div>
       <!-- footer -->
@@ -81,6 +91,7 @@
 import moment from "moment";
 
 import { pageMixins } from "@/util/PageMixins";
+import MenuRuleSelection from "./MenuRuleSelection";
 
 import typeProductServices from "@/services/type_product/type_product.js";
 import productServices from "@/services/type_product/type_product.js";
@@ -88,11 +99,12 @@ import productServices from "@/services/type_product/type_product.js";
 export default {
   props: ["show", "type", "item"],
   mixins: [pageMixins],
-  components: {},
+  components: { MenuRuleSelection },
   data: function () {
     return {
       value: {
         start_date: moment(new Date()).format("YYYY-MM-DD"),
+        name: "",
       },
       text: {
         title: "",
@@ -132,7 +144,16 @@ export default {
       }
     },
   },
+  computed: {
+    computeIgnoredGroupIds: function () {
+     console.warn("váo đây");
+    },
+  },
   methods: {
+    crudUnloadingFeeDepotBarem(barem, type, index) {
+      console.warn("thêm 1 dòng mới");
+      return;
+    },
     actionButton: async function () {
       if (!this.$refs.form.validate()) return;
       this.type === "add" ? await this.create() : await this.update();
@@ -154,7 +175,8 @@ export default {
         name: this.value.name,
         notes: this.value.notes,
       };
-      if (this.value.type_product) newItem.product_type_id = this.value.type_product.id;
+      if (this.value.type_product)
+        newItem.product_type_id = this.value.type_product.id;
       return newItem;
     },
     create: async function () {
@@ -168,10 +190,7 @@ export default {
           this.$SnackBar.show("success", this.$t("product_add_success"));
         } else {
           if (result.code === 201) {
-            this.$SnackBar.show(
-              "error",
-              this.$t("product_add_exist_error")
-            );
+            this.$SnackBar.show("error", this.$t("product_add_exist_error"));
             return;
           } else {
             this.$SnackBar.show("error", this.$t("product_get_data_error"));
@@ -194,10 +213,7 @@ export default {
         const result = response.data;
         if (result && !result.error) {
           this.$emit("reload-table");
-          this.$SnackBar.show(
-            "success",
-            this.$t("product_update_success")
-          );
+          this.$SnackBar.show("success", this.$t("product_update_success"));
         } else {
           this.$SnackBar.show("error", this.$t("product_get_data_error"));
         }
