@@ -57,8 +57,30 @@
             :type_product="value.type_product"
             :crudProductDetail="crudProductDetail"
             :item="value.data"
-            :items="value.data"
+            :items="value.productDetail"
           />
+
+          <v-data-table
+            hide-default-footer
+            disable-sort
+            class="mt-3 pb-8"
+            :headers="headers"
+            :items="value.productDetail"
+            :items-per-page="10000"
+          >
+            <template v-slot:item="{ item, index }">
+              <tr>
+                <td>{{ index + 1 }}</td>
+                <td>{{ item.name }}</td>
+                <td style="color: blue; font-weight: 600;">{{ formatMoney(item.price) }}</td>
+              </tr>
+            </template>
+            <template v-slot:no-data>
+              <div align="left">
+                {{ $t("no_data") }}
+              </div>
+            </template>
+          </v-data-table>
         </v-form>
       </div>
       <!-- footer -->
@@ -110,6 +132,12 @@ export default {
       },
       type_product: {},
       typeProducts: [],
+
+      headers: [
+        { text: this.$t("no"), width: 90, align: "center" },
+        { text: this.$t("product_name"), width: 120, align: "center" },
+        { text: "Giá", width: 250 },
+      ],
     };
   },
   watch: {
@@ -143,9 +171,13 @@ export default {
     },
   },
   methods: {
-    crudProductDetail(barem, type, index) {
-      console.warn("thêm 1 dòng mới");
-      return;
+    crudProductDetail(productDetail, type) {
+      const newData = this.value.productDetail ? [...this.value.productDetail] : [];
+      
+      if (type === "create") newData.push(productDetail);
+     
+      this.$set(this.value, "productDetail", newData);
+      console.warn("chi tiết sản phẩm", productDetail);
     },
     actionButton: async function () {
       if (!this.$refs.form.validate()) return;
