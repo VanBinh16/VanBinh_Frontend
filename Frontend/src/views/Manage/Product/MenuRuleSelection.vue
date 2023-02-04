@@ -52,7 +52,7 @@ import _cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "RuleSelection",
-  props: ["type", "type_product", "crudProductDetail", "productDetail", "item", "itemIndex", "listDetail"],
+  props: ["type", "type_product", "crudProductDetail", "item", "itemIndex", "listDetail"],
   mixins: [pageMixins],
   data() {
     return {
@@ -81,8 +81,6 @@ export default {
           return;
         }
       }
-
-
 
       this.crudProductDetail(detail, this.type, this.itemIndex);
       this.menu = false;
