@@ -19,6 +19,14 @@
       <h2 v-if="type === 'create'" class="black--text mb-3">
         {{ $t("product_add_detail_product_type") }}
       </h2>
+
+      <v-text-field dense outlined type="text" :label="$t('product_add_detail_name_title')" v-model="value.name"
+        :rules="[rules.empty]" />
+      <v-text-field dense outlined type="text" :label="$t('product_add_detail_price')" v-model="value.price"
+        :rules="[rules.empty]" />
+      <v-textarea dense outlined :label="$t('product_add_title_notes')" v-model="value.notes" />
+
+
       <h2 v-if="type === 'update'" class="black--text mb-3">
         {{ $t("product_update_detail_product_type") }}
       </h2>
@@ -57,15 +65,18 @@ export default {
       if (!this.$refs.form.validate()) return;
 
       const detail = {
-        price: 12,
-        name: "Bình",
+        name: this.value.name,
+        price: this.value.price,
+        notes: this.value.notes,
       };
 
       // kiểm tra chi tiết sản phẩm đã tồn tại
-      for (let i = 0; i < this.item.length; i++) {
-        if (this.item[i].name === detail.name) {
-          this.$SnackBar.show("error", this.$t("product_add_detail_exist_fail"));
-          return;
+      if (this.type === "create") {
+        for (let i = 0; i < this.item.length; i++) {
+          if (this.item[i].name === detail.name) {
+            this.$SnackBar.show("error", this.$t("product_add_detail_exist_fail"));
+            return;
+          }
         }
       }
 
@@ -82,6 +93,15 @@ export default {
         this.value = {};
         this.$refs.form && this.$refs.form.resetValidation();
         return;
+      } else if (this.type === "update") {
+        let tmpValue = {
+          name: this.item.name,
+          price: this.item.price,
+          notes: this.item.notes
+        }
+
+        //gán danh sách this.value bằng biến vừa lấy giá trị
+        this.value = tmpValue;
       }
     },
   },

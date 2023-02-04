@@ -12,67 +12,33 @@
       <!-- nội dung from -->
       <div class="pt-3 px-5">
         <v-form ref="form">
-          <v-text-field
-            dense
-            outlined
-            type="text"
-            :label="$t('product_code')"
-            v-model="value.code"
-            :rules="[rules.empty]"
-            :readonly="type === 'update'"
-          />
+          <v-text-field dense outlined type="text" :label="$t('product_code')" v-model="value.code"
+            :rules="[rules.empty]" :readonly="type === 'update'" />
 
-          <v-text-field
-            dense
-            outlined
-            type="text"
-            :label="$t('product_name')"
-            v-model="value.name"
-            :rules="[rules.empty]"
-          />
+          <v-text-field dense outlined type="text" :label="$t('product_name')" v-model="value.name"
+            :rules="[rules.empty]" />
 
-          <v-autocomplete
-            class="pb-6"
-            dense
-            outlined
-            hide-details
-            return-object
-            v-model="value.type_product"
-            :items="typeProducts"
-            item-text="name"
-            item-value="id"
-            :label="$t('product_type_name')"
-            :rules="[rules.empty]"
-          />
+          <v-autocomplete class="pb-6" dense outlined hide-details return-object v-model="value.type_product"
+            :items="typeProducts" item-text="name" item-value="id" :label="$t('product_type_name')"
+            :rules="[rules.empty]" />
 
-          <v-textarea
-            dense
-            outlined
-            :label="$t('type_product_notes')"
-            v-model="value.notes"
-          />
+          <v-textarea dense outlined :label="$t('type_product_notes')" v-model="value.notes" />
 
-          <menu-rule-selection
-            type="create"
-            :type_product="value.type_product"
-            :crudProductDetail="crudProductDetail"
-            :items="value.productDetail"
-            :item="value.productDetail"
-          />
+          <menu-rule-selection type="create" :type_product="value.type_product" :crudProductDetail="crudProductDetail"
+            :items="value.productDetail" :item="value.productDetail" />
 
-          <v-data-table
-            hide-default-footer
-            disable-sort
-            class="mt-3 pb-8"
-            :headers="headers"
-            :items="value.productDetail"
-            :items-per-page="10000"
-          >
+          <v-data-table hide-default-footer disable-sort class="mt-3 pb-8" :headers="headers"
+            :items="value.productDetail" :items-per-page="10000">
             <template v-slot:item="{ item, index }">
               <tr>
                 <td>{{ index + 1 }}</td>
+                <td style="text-align: center;">
+                  <menu-rule-selection type="update" :type_product="value.type_product"
+                    :crudProductDetail="crudProductDetail" :items="value.productDetail" :item="item" />
+                </td>
                 <td>{{ item.name }}</td>
                 <td style="color: blue; font-weight: 600;">{{ formatMoney(item.price) }}</td>
+                <td>{{ item.notes }}</td>
               </tr>
             </template>
             <template v-slot:no-data>
@@ -87,19 +53,10 @@
       <hr />
       <v-card-actions class="" style="background-color: #eeeeee">
         <v-spacer />
-        <v-btn
-          @click="closeInfoDialog"
-          class="mr-4"
-          outlined
-          :color="type === 'add' ? 'green' : 'blue'"
-        >
+        <v-btn @click="closeInfoDialog" class="mr-4" outlined :color="type === 'add' ? 'green' : 'blue'">
           {{ $t("button_close") }}
         </v-btn>
-        <v-btn
-          :color="type === 'add' ? 'green' : 'blue'"
-          class="white--text font-weight-bold"
-          @click="actionButton"
-        >
+        <v-btn :color="type === 'add' ? 'green' : 'blue'" class="white--text font-weight-bold" @click="actionButton">
           {{ text.action }}
         </v-btn>
       </v-card-actions>
@@ -136,8 +93,10 @@ export default {
 
       headers: [
         { text: this.$t("column_stt"), width: 90, align: "center" },
+        { text: this.$t("acction_title"), width: 100, align: "center" },
         { text: this.$t("product_name"), width: 120, align: "center" },
-        { text: "Giá", width: 250 },
+        { text: this.$t("product_add_detail_price"), width: 120 },
+        { text: this.$t("product_notes"), width: 200, align: "center" },
       ],
     };
   },
@@ -184,9 +143,13 @@ export default {
       }
 
       if (type === "create") newData.push(detail);
-     
+      else if (type === "update") {
+        newData.splice(index, 1);
+        newData.splice(index, 0, detail);
+      }
+
       this.$set(this.value, "productDetail", newData);
-    
+
     },
     actionButton: async function () {
       if (!this.$refs.form.validate()) return;
