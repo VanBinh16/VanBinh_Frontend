@@ -52,7 +52,7 @@ import _cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "RuleSelection",
-  props: ["type", "type_product", "crudProductDetail", "productDetail", "item"],
+  props: ["type", "type_product", "crudProductDetail", "productDetail", "item", "itemIndex", "listDetail"],
   mixins: [pageMixins],
   data() {
     return {
@@ -71,17 +71,20 @@ export default {
       };
 
       // kiểm tra chi tiết sản phẩm đã tồn tại
-      if (this.type === "create") {
-        for (let i = 0; i < this.item.length; i++) {
-          if (this.item[i].name === detail.name) {
-            this.$SnackBar.show("error", this.$t("product_add_detail_exist_fail"));
-            return;
-          }
+      const listDetail = _.cloneDeep(this.listDetail);
+      if (this.type === "update") {
+        listDetail.splice(this.itemIndex, 1);
+      }
+      for (let i = 0; i < listDetail.length; i++) {
+        if (listDetail[i].name === detail.name) {
+          this.$SnackBar.show("error", this.$t("product_add_detail_exist_fail"));
+          return;
         }
       }
 
 
-      this.crudProductDetail(detail, this.type);
+
+      this.crudProductDetail(detail, this.type, this.itemIndex);
       this.menu = false;
     },
     async onBtnClick() {

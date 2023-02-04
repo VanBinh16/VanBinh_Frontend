@@ -25,7 +25,7 @@
           <v-textarea dense outlined :label="$t('type_product_notes')" v-model="value.notes" />
 
           <menu-rule-selection type="create" :type_product="value.type_product" :crudProductDetail="crudProductDetail"
-            :items="value.productDetail" :item="value.productDetail" />
+            :listDetail="value.productDetail" :item="value.productDetail" />
 
           <v-data-table hide-default-footer disable-sort class="mt-3 pb-8" :headers="headers"
             :items="value.productDetail" :items-per-page="10000">
@@ -34,7 +34,8 @@
                 <td>{{ index + 1 }}</td>
                 <td style="text-align: center;">
                   <menu-rule-selection type="update" :type_product="value.type_product"
-                    :crudProductDetail="crudProductDetail" :items="value.productDetail" :item="item" />
+                    :crudProductDetail="crudProductDetail" :listDetail="value.productDetail" :item="item"
+                    :itemIndex="index" />
                 </td>
                 <td>{{ item.name }}</td>
                 <td style="color: blue; font-weight: 600;">{{ formatMoney(item.price) }}</td>
@@ -69,6 +70,7 @@ import moment from "moment";
 
 import { pageMixins } from "@/util/PageMixins";
 import MenuRuleSelection from "./MenuRuleSelection";
+import _cloneDeep from "lodash/cloneDeep";
 
 import typeProductServices from "@/services/type_product/type_product.js";
 import productServices from "@/services/type_product/type_product.js";
@@ -131,12 +133,17 @@ export default {
     },
   },
   methods: {
-    crudProductDetail(detail, type) {
+    crudProductDetail(detail, type, index) {
       const newData = this.value.productDetail ? [...this.value.productDetail] : [];
 
       //kiểm tra chi tiết sản phẩm đã tồn tại (chưa dùng đến do MenuRuleSelection.vue đã chặn)
-      for (let i = 0; i < this.value.productDetail.length; i++) {
-        if (this.value.productDetail[i].name === detail.name) {
+      const listDetailCheckData = _.cloneDeep(newData);
+      if(type === "update")
+      {
+        listDetailCheckData.splice(index, 1);
+      }
+      for (let i = 0; i < listDetailCheckData.length; i++) {
+        if (listDetailCheckData[i].name === detail.name) {
           this.$SnackBar.show("error", this.$t("product_add_detail_exist_fail"));
           return;
         }
