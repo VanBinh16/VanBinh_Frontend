@@ -19,17 +19,15 @@
       <h2 v-if="type === 'create'" class="black--text mb-3">
         {{ $t("product_add_detail_product_type") }}
       </h2>
+      <h2 v-if="type === 'update'" class="black--text mb-3">
+        {{ $t("product_update_detail_product_type") }}
+      </h2>
 
       <v-text-field dense outlined type="text" :label="$t('product_add_detail_name_title')" v-model="value.name"
         :rules="[rules.empty]" />
       <v-text-field dense outlined type="text" :label="$t('product_add_detail_price')" v-model="value.price"
         :rules="[rules.empty]" />
       <v-textarea dense outlined :label="$t('product_add_title_notes')" v-model="value.notes" />
-
-
-      <h2 v-if="type === 'update'" class="black--text mb-3">
-        {{ $t("product_update_detail_product_type") }}
-      </h2>
 
       <v-row class="ma-0 pa-0 mt-5">
         <v-spacer></v-spacer>
