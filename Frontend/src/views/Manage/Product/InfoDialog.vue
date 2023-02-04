@@ -56,8 +56,8 @@
             type="create"
             :type_product="value.type_product"
             :crudProductDetail="crudProductDetail"
-            :item="value.data"
             :items="value.productDetail"
+            :item="value.productDetail"
           />
 
           <v-data-table
@@ -77,7 +77,7 @@
             </template>
             <template v-slot:no-data>
               <div align="left">
-                {{ $t("no_data") }}
+                {{ $t("no_find_data_title") }}
               </div>
             </template>
           </v-data-table>
@@ -125,6 +125,7 @@ export default {
       value: {
         start_date: moment(new Date()).format("YYYY-MM-DD"),
         name: "",
+        productDetail: [],
       },
       text: {
         title: "",
@@ -134,7 +135,7 @@ export default {
       typeProducts: [],
 
       headers: [
-        { text: this.$t("no"), width: 90, align: "center" },
+        { text: this.$t("column_stt"), width: 90, align: "center" },
         { text: this.$t("product_name"), width: 120, align: "center" },
         { text: "Giá", width: 250 },
       ],
@@ -171,13 +172,21 @@ export default {
     },
   },
   methods: {
-    crudProductDetail(productDetail, type) {
+    crudProductDetail(detail, type) {
       const newData = this.value.productDetail ? [...this.value.productDetail] : [];
-      
-      if (type === "create") newData.push(productDetail);
+
+      //kiểm tra chi tiết sản phẩm đã tồn tại (chưa dùng đến do MenuRuleSelection.vue đã chặn)
+      for (let i = 0; i < this.value.productDetail.length; i++) {
+        if (this.value.productDetail[i].name === detail.name) {
+          this.$SnackBar.show("error", this.$t("product_add_detail_exist_fail"));
+          return;
+        }
+      }
+
+      if (type === "create") newData.push(detail);
      
       this.$set(this.value, "productDetail", newData);
-      console.warn("chi tiết sản phẩm", productDetail);
+    
     },
     actionButton: async function () {
       if (!this.$refs.form.validate()) return;

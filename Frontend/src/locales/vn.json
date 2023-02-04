@@ -216,6 +216,7 @@
     "product_detail_title": "Chi tiết sản phẩm",
     "product_add_detail_product_type": "Thêm chi tiết sản phẩm",
     "product_update_detail_product_type": "Cập nhật chi tiết sản phẩm",
+    "product_add_detail_exist_fail": "Chi tiết sản phẩm đã tồn tại, vui lòng kiểm tra lại",
     "product_end_no_use": "",
 
     "end_no_use": ""
