@@ -36,6 +36,11 @@
                   <menu-rule-selection type="update" :type_product="value.type_product"
                     :crudProductDetail="crudProductDetail" :listDetail="value.productDetail" :item="item"
                     :itemIndex="index" />
+                    <menu-remove
+                    v-if="value.productDetail.length > 1"
+                    :item="item"
+                    @on-remove-barem="onRemoveDetail(index, item)"
+                  />
                 </td>
                 <td>{{ item.name }}</td>
                 <td style="color: blue; font-weight: 600;">{{ formatMoney(item.price) }}</td>
@@ -70,6 +75,7 @@ import moment from "moment";
 
 import { pageMixins } from "@/util/PageMixins";
 import MenuRuleSelection from "./MenuRuleSelection";
+import MenuRemove from "./MenuRemove";
 import _cloneDeep from "lodash/cloneDeep";
 
 import typeProductServices from "@/services/type_product/type_product.js";
@@ -78,7 +84,7 @@ import productServices from "@/services/type_product/type_product.js";
 export default {
   props: ["show", "type", "item"],
   mixins: [pageMixins],
-  components: { MenuRuleSelection },
+  components: { MenuRuleSelection, MenuRemove },
   data: function () {
     return {
       value: {
@@ -124,6 +130,7 @@ export default {
           code: this.item.code,
           name: this.item.name,
           notes: this.item.notes,
+          productDetail: this.item.details,
         };
         if (this.typeProducts)
           this.value.type_product = this.typeProducts.find(
@@ -135,7 +142,6 @@ export default {
   methods: {
     crudProductDetail(detail, type, index) {
       const newData = this.value.productDetail ? [...this.value.productDetail] : [];
-
       //kiểm tra chi tiết sản phẩm đã tồn tại (chưa dùng đến do MenuRuleSelection.vue đã chặn)
       const listDetailCheckData = _.cloneDeep(newData);
       if(type === "update")
@@ -148,15 +154,17 @@ export default {
           return;
         }
       }
-
       if (type === "create") newData.push(detail);
       else if (type === "update") {
         newData.splice(index, 1);
         newData.splice(index, 0, detail);
       }
-
       this.$set(this.value, "productDetail", newData);
-
+    },
+    onRemoveDetail(index) {
+      const newData = this.value.productDetail.slice();
+      newData.splice(index, 1);
+      this.$set(this.value, "productDetail", newData);
     },
     actionButton: async function () {
       if (!this.$refs.form.validate()) return;
