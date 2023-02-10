@@ -29,7 +29,7 @@ import Register from "@/views/Register/Register.vue";
 //THU GON CHUOI KET NOI
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4000/api";
+axios.defaults.baseURL = "http://localhost:3100/api";
 
 Vue.use(Router);
 
